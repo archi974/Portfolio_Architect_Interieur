@@ -4,9 +4,13 @@
     <a href="https://devdocs.io/html/">
         <img src="https://img.shields.io/badge/html5%20-%23e34f26.svg?&style=for-the-badge&logo=html5&logoColor=white" alt="HTML" />
     </a>
+    <a href="https://devdocs.io/css/">
+      <img src="https://img.shields.io/badge/CSS3-1572B6?&style=for-the-badge&logo=css3&logoColor=white" alt="CSS" />
+    </a>
     <a href="https://developer.mozilla.org/fr/docs/Web/JavaScript">
         <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black" alt="JavaScript" />
     </a>
+    
 </div>
 
 ## Projet : Réalissation de la partie dynamique du front d'un portfolio d'architecte en JavaScript
@@ -22,9 +26,10 @@ Vous travaillez comme développeur front-end pour l’agence ArchiWebos qui comp
 
 Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en renfort comme développeur front-end d’une équipe qui travaille sur la conception du site portfolio d’une architecte d’intérieur.
 
-## Contrainte :
+## Objectif :
 
-- aucune contrainte.
+- Récupérer la gallerie d'image et leurs légende depuis l'API
+- Crée un filtre intéractif avec des boutons
 
 ## Instruction d'installation et d'utilisation :
 

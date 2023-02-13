@@ -2,6 +2,11 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+:root {
+	--green-color: #1D6154;
+	--orange-color: #B1663C;
+	--white-color: #fff;
+}
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
@@ -68,7 +73,7 @@ h1{
 	font-family: 'Syne';
 	font-size: 22px;
 	font-weight: 800;
-	color: #B1663C
+	color: var(--orange-color);
 }
 
 h1 > span {
@@ -82,7 +87,7 @@ h2{
 	font-family: 'Syne';
 	font-weight: 700;
 	font-size: 30px;
-	color: #1D6154
+	color: var(--green-color);
 }
 nav ul {
 	display: flex;
@@ -96,7 +101,7 @@ nav li {
 }
 
 li:hover {
-	color: #B1663C;
+	color: var(--orange-color);
 }
 #introduction {
 	display: flex;
@@ -139,9 +144,9 @@ li:hover {
 	margin-right: 0;
 }
 input[type="button"]{
-	border: 1px solid #1D6154;
-    color: #1D6154;
-    background-color: #fff;
+	border: 1px solid var(--green-color);
+    color: var(--green-color);
+    background-color: var(--white-color);
     border-radius: 60px;
     font-size: 16px;
     padding: 9px 20px;
@@ -150,8 +155,8 @@ input[type="button"]{
 }
 
 input[type="button"]:hover, input[type="button"]:focus{
-	background-color: #1D6154;
-	color: #fff;
+	background-color: var(--green-color);
+	color: var(--white-color);
 }
 
 .gallery {
@@ -168,7 +173,7 @@ input[type="button"]:hover, input[type="button"]:focus{
 }
 #contact {
 	width: 50%;
-margin: auto;
+	margin: auto;
 }
 #contact > * {
 	text-align: center;
@@ -177,6 +182,11 @@ margin: auto;
 #contact h2{
 	margin-bottom: 20px;
 }
+
+#contact a {
+	color: var(--green-color);
+}
+
 #contact form {
 	text-align: left;
 	margin-top:30px;
@@ -201,8 +211,8 @@ margin: auto;
 input[type="submit"]{
 	font-family: 'Syne';
 	font-weight: 700;
-	color: white;
-	background-color: #1D6154;
+	color: var(--white-color);
+	background-color: var(--green-color);
 	margin : 2em auto ;
 	width: 180px;
 	text-align: center;

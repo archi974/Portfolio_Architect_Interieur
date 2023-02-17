@@ -1,59 +1,76 @@
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function () {
+    let gallery = document.getElementById('gallery');
+    let buttonFilter = document.querySelectorAll('.container_filter li');
     fetch('http://localhost:5678/api/works')
         .then(response => response.json())
         .then(response => {
-            response.forEach(imageInfo => {
-                var figure = document.createElement('figure');
-                var gallery = document.getElementById('gallery');
-                gallery.appendChild(figure);
-                var img = document.createElement('img');
-                var imgSrc = imageInfo.imageUrl;
-                img.src = imgSrc;
-                img.alt = "";
-                var figcaption = document.createElement('figcaption');
-                figcaption.innerHTML = imageInfo.title;
-                figure.appendChild(img);
-                figure.appendChild(figcaption);
+            buttonFilter.forEach(listButton => {
+                let valueFilter = listButton.querySelector('input').dataset.category;
+                listButton.addEventListener('click', () => {
+                    switch (valueFilter) {
+                        case "0":
+                            gallery.innerHTML = "";
+                            response.forEach(imageInfo => {
+                                let title = imageInfo.title;
+                                let imageUrl = imageInfo.imageUrl;
+                                let categoryId = imageInfo.categoryId;
+                                gallery.innerHTML += `
+                                    <figure data-item-category="${categoryId}">
+                                        <img src="${imageUrl}" alt="${title}">
+                                        <figcaption>${title}</figcation>
+                                    </figure>`;
+                            });
+                            break;
+                        case "1":
+                            gallery.innerHTML = "";
+                            response.forEach(imageInfo => {
+                                let title = imageInfo.title;
+                                let imageUrl = imageInfo.imageUrl;
+                                let categoryId = imageInfo.categoryId;
+                                if (categoryId === 1) {
+                                    gallery.innerHTML += `
+                                        <figure data-item-category="${categoryId}">
+                                            <img src="${imageUrl}" alt="${title}">
+                                            <figcaption>${title}</figcation>
+                                        </figure>`;
+                                }
+                            });
+                            break;
+                        case "2":
+                            gallery.innerHTML = "";
+                            response.forEach(imageInfo => {
+                                let title = imageInfo.title;
+                                let imageUrl = imageInfo.imageUrl;
+                                let categoryId = imageInfo.categoryId;
+                                if (categoryId === 2) {
+                                    gallery.innerHTML += `
+                                        <figure data-item-category="${categoryId}">
+                                            <img src="${imageUrl}" alt="${title}">
+                                            <figcaption>${title}</figcation>
+                                        </figure>`;
+                                }
+                            });
+                            break;
+                        case "3":
+                            gallery.innerHTML = "";
+                            response.forEach(imageInfo => {
+                                let title = imageInfo.title;
+                                let imageUrl = imageInfo.imageUrl;
+                                let categoryId = imageInfo.categoryId;
+                                if (categoryId === 3) {
+                                    gallery.innerHTML += `
+                                        <figure data-item-category="${categoryId}">
+                                            <img src="${imageUrl}" alt="${title}">
+                                            <figcaption>${title}</figcation>
+                                        </figure>`;
+                                }
+                            });
+                            break;
+                        default:
+                            break;
+                    }
+                });
             });
+
         });
 });
-
-function filterButton(value) {
-    fetch('http://localhost:5678/api/works')
-        .then(response => response.json())
-        .then(response => {
-            response.forEach(imageInfo => {
-                let CategoryId = imageInfo.category.id;
-                displayImage = imageInfo.id - 1;
-                switch (value) {
-                    case "all":
-                        document.querySelector('#gallery').children[displayImage].style.display = "initial";
-                        break;
-                    case "object":
-                        if (CategoryId != 1) {
-                            document.querySelector('#gallery').children[displayImage].style.display = "none";
-                        } else {
-                            document.querySelector('#gallery').children[displayImage].style.display = "initial";
-                        }
-                        break;
-                    case "apartment":
-                        if (CategoryId != 2) {
-                            console.log(imageInfo.id);
-                            document.querySelector('#gallery').children[displayImage].style.display = "none";
-                        } else {
-                            document.querySelector('#gallery').children[displayImage].style.display = "initial";
-                        }
-                        break;
-                    case "hotel & restaurant":
-                        if (CategoryId != 3) {
-                            document.querySelector('#gallery').children[displayImage].style.display = "none";
-                        } else {
-                            document.querySelector('#gallery').children[displayImage].style.display = "initial";
-                        }
-                        break;
-                    default:
-                        break;
-                }
-            });
-        })
-}

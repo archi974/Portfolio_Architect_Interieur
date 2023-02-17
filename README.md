@@ -30,6 +30,7 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
 
 - Récupérer la gallerie d'image et leurs légende depuis l'API
 - Crée un filtre intéractif avec des boutons
+- Crée une page de connexion, enregistrer les informations dans un token et la base de donnée
 
 ## Instruction d'installation et d'utilisation :
 
@@ -44,9 +45,9 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
 - Installer l'extension [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) sur Visual Studo Code.
 - Après le lancement du back dans un terminal récupération du code et ouverture avec Visual Studio Code, lancer "Go Live" en bas à droite
 
-## Bugs connus et corrections éventuelles apportées :
+## Problème et corrections éventuelles apportées :
 
-  - 
+  - Erreur 405 "Method Not Allowed" à l'envoi du formulaire de connexion.
 
 # Site utiliser
 
@@ -55,6 +56,10 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
     - https://www.codemzy.com/blog/connect-front-end-website-to-back-end
 
     - https://forum.freecodecamp.org/t/its-this-a-good-way-to-create-a-image-loop/323175
+
+    - https://www.xul.fr/javascript/form-intro.php
+
+    - https://www.digitalocean.com/community/tutorials/understanding-destructuring-rest-parameters-and-spread-syntax-in-javascript-fr
 
 ## FAQ
 

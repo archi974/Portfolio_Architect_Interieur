@@ -12,28 +12,37 @@
 		rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
+	<script defer src="./login.js"></script>
 </head>
 
 <body>
 	<header>
-		<h1>Sophie Bluel <span>Architecte d'inteérieur</span></h1>
+		<a href="./">
+			<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+		</a>
 		<nav>
 			<ul>
-				<li>projets</li>
-				<li>contact</li>
-				<li>login</li>
+				<li>
+					<a href="./#portfolio">projets</a>
+				</li>
+				<li>
+					<a href="./#contact">contact</a>
+				</li>
+				<li>
+					<a href="./login.html">login</a>
+				</li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
 	</header>
 	<main id="contact">
 		<h2>Log In</h2>
-		<form action="#" method="post" id="test">
+		<form name="myForm" action="" method="post">
 			<label for="email">E-mail</label>
-			<input type="email" name="email" id="emailTest">
+			<input type="email" name="email">
 			<label for="password">Mot de passe</label>
-			<input type="password" name="password" id="passwordTest">
-			<input type="submit" value="Se connecter">
+			<input type="password" name="password">
+			<input type="submit" id="buttonSubmit" value="Se connecter">
 		</form>
 		<div>
 			<a href="#">Mot de passe oublié</a>

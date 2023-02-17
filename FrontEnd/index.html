@@ -16,12 +16,20 @@
 
 <body>
 	<header>
-		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+		<a href="./">
+			<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
+		</a>
 		<nav>
 			<ul>
-				<li>projets</li>
-				<li>contact</li>
-				<li>login</li>
+				<li>
+					<a href="./#portfolio">projets</a>
+				</li>
+				<li>
+					<a href="./#contact">contact</a>
+				</li>
+				<li>
+					<a href="./login.html">login</a>
+				</li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
@@ -46,16 +54,16 @@
 			<h2>Mes Projets</h2>
 			<ul class="container_filter">
 				<li class="filter_button">
-					<input type="button" value="Tous" onclick="filterButton('all')">
+					<input type="button" value="Tous" data-category="0">
 				</li>
 				<li class="filter_button">
-					<input type="button" value="Objets" onclick="filterButton('object')">
+					<input type="button" value="Objets" data-category="1">
 				</li>
 				<li class="filter_button">
-					<input type="button" value="Appartements" onclick="filterButton('apartment')">
+					<input type="button" value="Appartements" data-category="2">
 				</li>
 				<li class="filter_button">
-					<input type="button" value="Hôtels & restaurants" onclick="filterButton('hotel & restaurant')">
+					<input type="button" value="Hôtels & restaurants" data-category="3">
 				</li>
 			</ul>
 			<div class="gallery" id="gallery"></div>

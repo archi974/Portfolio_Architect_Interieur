@@ -61,8 +61,13 @@ body {
 header {
 	display: flex;
 	justify-content: space-between;
-	margin: 50px 0
+	margin: 50px 0;
 }
+
+header a {
+	text-decoration: none;
+}
+
 section {
 	margin: 50px 0
 }
@@ -100,7 +105,11 @@ nav li {
 	font-size: 1.2em;
 }
 
-li:hover {
+nav li a {
+	color: #000;
+}
+
+nav li a:hover {
 	color: var(--orange-color);
 }
 #introduction {
@@ -133,13 +142,16 @@ li:hover {
 
 .container_filter {
 	display: flex;
-    margin-block: 51px;
+    margin-block: 41px;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .filter_button {
 	margin-right: 10px;
+	margin-block: 10px;
 }
+
 .filter_buttion:last-child {
 	margin-right: 0;
 }
@@ -202,6 +214,7 @@ input[type="button"]:hover, input[type="button"]:focus{
 }
 #contact label {
 	margin: 2em 0 1em 0;
+	color: #3D3D3D;
 }
 #contact textarea {
 	border: none;

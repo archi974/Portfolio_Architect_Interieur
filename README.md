@@ -47,7 +47,7 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
 
 ## Problème et corrections éventuelles apportées :
 
-  - Erreur 405 "Method Not Allowed" à l'envoi du formulaire de connexion.
+  - Erreur 405 "Method Not Allowed" à l'envoi du formulaire de connexion. Mauvaise écriture du code, ne pas utiliser les onClick et comprendre les requêtes POST avec https://fr.javascript.info/fetch#requetes-post
 
 # Site utiliser
 
@@ -60,6 +60,10 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
     - https://www.xul.fr/javascript/form-intro.php
 
     - https://www.digitalocean.com/community/tutorials/understanding-destructuring-rest-parameters-and-spread-syntax-in-javascript-fr
+
+    - https://stackoverflow.com/questions/14573223/set-cookie-and-get-cookie-with-javascript
+
+    - http://talkerscode.com/howto/javascript-delete-session-cookie.php
 
 ## FAQ
 

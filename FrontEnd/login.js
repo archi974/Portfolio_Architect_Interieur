@@ -8,7 +8,7 @@ document.getElementById('buttonSubmit').addEventListener('click', async function
         },
         body: JSON.stringify(formData),
     });
-
     let result = await response.json();
-    console.log(result);
+    document.cookie = `loginToken=${result.token}`;
+    location.replace("http://127.0.0.1:5500/FrontEnd/");
 });

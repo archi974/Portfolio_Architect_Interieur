@@ -73,4 +73,19 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
         });
+    let getCookie = document.cookie.split('=');
+    if(getCookie[0] === "loginToken" && getCookie[1].length === 143) {
+        let editComponent = document.getElementById('edit');
+        editComponent.innerHTML = 
+        `<i class="fa-regular fa-pen-to-square"></i>
+        <p>Mode édition</p>
+        <button type="">publier les changements</button>`
+        editComponent.style.display = 'flex';
+        document.querySelector('nav li:nth-child(3)').innerHTML = `<a href="./" id="disconnect">Logout</a>`;
+        document.getElementById('disconnect').addEventListener('click', function (event) {
+            event.preventDefault();
+            document.cookie = 'loginToken=;Max-age=0;';
+            location.reload();
+        });
+    }
 });

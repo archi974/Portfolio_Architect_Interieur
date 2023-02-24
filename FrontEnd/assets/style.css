@@ -6,6 +6,8 @@
 	--green-color: #1D6154;
 	--orange-color: #B1663C;
 	--white-color: #fff;
+	--black-color: #000;
+	--softBlack-color: #3D3D3D;
 }
 
 html, body, div, span, applet, object, iframe,
@@ -60,7 +62,7 @@ table {
 }
 
 #edit {
-	background-color: #000;
+	background-color: var(--black-color);
     justify-content: center;
 	align-items: center;
     color: #fff;
@@ -129,7 +131,7 @@ nav li {
 }
 
 nav li a {
-	color: #000;
+	color: var(--black-color);
 }
 
 nav li a:hover {
@@ -137,7 +139,6 @@ nav li a:hover {
 }
 #introduction {
 	display: flex;
-	align-items: center;
 }
 #introduction figure {
 	flex: 1
@@ -149,7 +150,8 @@ nav li a:hover {
 }
 
 #introduction article {
-	flex: 1
+	flex: 1;
+	margin-top: 20px;
 }
 #introduction h2 {
 	margin-bottom: 1em;
@@ -157,28 +159,56 @@ nav li a:hover {
 
 #introduction p {
 	margin-bottom: 0.5em;
+	width: 404px;
+	line-height: 16px;
 }
-#portfolio h2 {
-	text-align: center;
-	margin-bottom: 1em;
+
+
+.edit {
+	display: flex;
+	text-decoration: none;
+	color: var(--black-color);
+}
+
+.edit p {
+	margin: 0 0 0 8px;
+}
+
+figure .edit {
+	margin: 13px 0 0 60px;
+}
+
+article .edit {
+	margin-bottom: 19px;
+}
+
+.portfolio_content_title {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#portfolio .edit {
+	margin-left: 31px;
 }
 
 .container_filter {
 	display: flex;
-    margin-block: 41px;
+    margin-block: 51px;
     justify-content: center;
     flex-wrap: wrap;
 }
 
-.filter_button {
+.filter_element {
 	margin-right: 10px;
 	margin-block: 10px;
 }
 
-.filter_buttion:last-child {
+.filter_element:last-child {
 	margin-right: 0;
 }
-input[type="button"]{
+
+.button_filter{
 	border: 1px solid var(--green-color);
     color: var(--green-color);
     background-color: var(--white-color);
@@ -189,7 +219,12 @@ input[type="button"]{
     font-family: Syne;
 }
 
-input[type="button"]:hover, input[type="button"]:focus{
+.active {
+	background-color: var(--green-color);
+	color: var(--white-color);
+}
+
+.button_filter:hover, .button_filter:focus{
 	background-color: var(--green-color);
 	color: var(--white-color);
 }
@@ -237,7 +272,7 @@ input[type="button"]:hover, input[type="button"]:focus{
 }
 #contact label {
 	margin: 2em 0 1em 0;
-	color: #3D3D3D;
+	color: var(--softBlack-color);
 }
 #contact textarea {
 	border: none;

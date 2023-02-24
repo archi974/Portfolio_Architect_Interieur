@@ -65,6 +65,8 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
 
     - http://talkerscode.com/howto/javascript-delete-session-cookie.php
 
+    - https://flexiple.com/javascript/javascript-appendchild/
+
 ## FAQ
 
   - 

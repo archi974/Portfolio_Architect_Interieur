@@ -152,6 +152,9 @@ nav li a:hover {
 #introduction article {
 	flex: 1;
 	margin-top: 20px;
+	display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
 }
 #introduction h2 {
 	margin-bottom: 1em;

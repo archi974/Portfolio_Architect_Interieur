@@ -1,4 +1,5 @@
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', function (event) {
+    event.preventDefault();
     let gallery = document.getElementById('gallery');
     fetch('http://localhost:5678/api/works')
         .then(response => response.json())
@@ -21,7 +22,6 @@ document.addEventListener('DOMContentLoaded', function () {
                     const filterButtonCategory = event.target.dataset.category;
                     [...projectsItem].forEach(item => {
                         const projectItemCategory = item.dataset.itemCategory;
-                        console.log(filterButtonCategory == 0);
                         if (filterButtonCategory == 0 || projectItemCategory === filterButtonCategory) {
                             item.style.display = "initial";
                         } else {
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
     if (getCookie[0] === "loginToken" && getCookie[1].length === 143) {
         let editComponent = document.getElementById('edit');
         editComponent.innerHTML =
-            `<i class="fa-regular fa-pen-to-square"></i>
+        `<i class="fa-regular fa-pen-to-square"></i>
         <p>Mode édition</p>
         <button type="">publier les changements</button>`
         editComponent.style.display = 'flex';
@@ -45,6 +45,11 @@ document.addEventListener('DOMContentLoaded', function () {
             document.cookie = 'loginToken=;Max-age=0;';
             location.reload();
         });
-        document.querySelector('figure').innerHTML = `<img src="./assets/images/sophie-bluel.png" alt=""><div class="edit"><i class="fa-regular fa-pen-to-square"></i><p>modifier</p></div>`
+        document.querySelector('figure').innerHTML = `<img src="./assets/images/sophie-bluel.png" alt=""><a href="" class="edit"></a>`
+        // document.getElementById('introduction').children[1].children[0].innerHTML = '<i class="fa-regular fa-pen-to-square"></i><p>modifier</p>';
+        document.getElementById('portfolio').firstElementChild.innerHTML = '<h2>Mes Projets</h2><a class="edit"></a>'
+        for (let i = 0; i <= 2; i++) {
+            document.getElementsByClassName('edit')[i].innerHTML = '<i class="fa-regular fa-pen-to-square"></i><p>modifier</p>';
+        }
     }
 });

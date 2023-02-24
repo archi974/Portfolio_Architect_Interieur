@@ -59,5 +59,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
             editClass[i].style.cursor = 'pointer';
             editClass[i].innerHTML = '<i class="fa-regular fa-pen-to-square"></i><p>modifier</p>';
         }
+
+        const modal = document.getElementById('edit').appendChild(document.createElement("div"));
+        document.getElementById('projectEdit').addEventListener('click', (e) => {
+            modal.setAttribute('class', 'modal');
+            modal.appendChild(document.createElement('div')).setAttribute('class', 'modal_content')
+        })
     }
 });

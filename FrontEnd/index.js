@@ -45,11 +45,19 @@ document.addEventListener('DOMContentLoaded', function (event) {
             document.cookie = 'loginToken=;Max-age=0;';
             location.reload();
         });
-        document.querySelector('figure').innerHTML = `<img src="./assets/images/sophie-bluel.png" alt=""><a href="" class="edit"></a>`
-        // document.getElementById('introduction').children[1].children[0].innerHTML = '<i class="fa-regular fa-pen-to-square"></i><p>modifier</p>';
-        document.getElementById('portfolio').firstElementChild.innerHTML = '<h2>Mes Projets</h2><a class="edit"></a>'
-        for (let i = 0; i <= 2; i++) {
-            document.getElementsByClassName('edit')[i].innerHTML = '<i class="fa-regular fa-pen-to-square"></i><p>modifier</p>';
+        
+        const arrayId = [
+            document.getElementById('introduction').firstElementChild,
+            document.getElementById('introduction').lastElementChild,
+            document.getElementById('portfolio').firstElementChild
+        ]
+        for (let i = 0; i <= arrayId.length-1; i++) {
+            let id = ["profileImgEdit", "textDescriptionEdit", "projectEdit"]
+            let editClass = document.getElementsByClassName('edit');
+            arrayId[i].insertBefore(document.createElement('a'), arrayId[i].lastChild).setAttribute('class', 'edit')
+            editClass[i].setAttribute('id', id[i]);
+            editClass[i].style.cursor = 'pointer';
+            editClass[i].innerHTML = '<i class="fa-regular fa-pen-to-square"></i><p>modifier</p>';
         }
     }
 });

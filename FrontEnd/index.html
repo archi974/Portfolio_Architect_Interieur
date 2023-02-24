@@ -43,6 +43,7 @@
 					<img src="./assets/images/sophie-bluel.png" alt="">
 				</figure>
 				<article>
+					<a href="" class="edit"></a>
 					<h2>Designer d'espace</h2>
 					<p>Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la
 						livraison
@@ -55,19 +56,21 @@
 				</article>
 			</div>
 			<section id="portfolio">
-				<h2>Mes Projets</h2>
+				<div class="portfolio_content_title">
+					<h2>Mes Projets</h2>
+				</div>
 				<ul class="container_filter">
-					<li class="filter_button">
-						<input type="button" value="Tous" data-category="0">
+					<li class="filter_element">
+						<input type="button" value="Tous" class="button_filter active" data-category="0">
 					</li>
-					<li class="filter_button">
-						<input type="button" value="Objets" data-category="1">
+					<li class="filter_element">
+						<input type="button" value="Objets" class="button_filter" data-category="1">
 					</li>
-					<li class="filter_button">
-						<input type="button" value="Appartements" data-category="2">
+					<li class="filter_element">
+						<input type="button" value="Appartements" class="button_filter" data-category="2">
 					</li>
-					<li class="filter_button">
-						<input type="button" value="Hôtels & restaurants" data-category="3">
+					<li class="filter_element">
+						<input type="button" value="Hôtels & restaurants" class="button_filter" data-category="3">
 					</li>
 				</ul>
 				<div class="gallery" id="gallery"></div>

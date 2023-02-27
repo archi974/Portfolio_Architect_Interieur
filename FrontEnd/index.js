@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function (event) {
+function getAPIProject(event) {
     event.preventDefault();
     let gallery = document.getElementById('gallery');
     fetch('http://localhost:5678/api/works')
@@ -63,7 +63,12 @@ document.addEventListener('DOMContentLoaded', function (event) {
         const modal = document.getElementById('edit').appendChild(document.createElement("div"));
         document.getElementById('projectEdit').addEventListener('click', (e) => {
             modal.setAttribute('class', 'modal');
-            modal.appendChild(document.createElement('div')).setAttribute('class', 'modal_content')
+            modal.appendChild(document.createElement('div')).setAttribute('id', 'modal_content')
+            document.getElementById('modal_content').innerHTML = 
+            `<i class="fa-regular fa-arrow-left"></i>
+            `
         })
     }
-});
+};
+
+getAPIProject();

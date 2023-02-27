@@ -67,6 +67,12 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
 
     - https://flexiple.com/javascript/javascript-appendchild/
 
+    - https://stackoverflow.com/questions/12274748/setting-multiple-attributes-for-an-element-at-once-with-javascript
+
+    - https://stackoverflow.com/questions/4564251/change-the-mouse-pointer-using-javascript
+
+    - https://www.w3schools.com/howto/howto_css_modals.asp
+
 ## FAQ
 
   - 

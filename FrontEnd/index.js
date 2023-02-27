@@ -1,4 +1,4 @@
-function getAPIProject(event) {
+document.addEventListener('DOMContentLoaded', function (event) {
     event.preventDefault();
     let gallery = document.getElementById('gallery');
     fetch('http://localhost:5678/api/works')
@@ -69,6 +69,4 @@ function getAPIProject(event) {
             `
         })
     }
-};
-
-getAPIProject();
+});

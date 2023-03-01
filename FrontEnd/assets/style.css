@@ -105,6 +105,43 @@ table {
 	color: var(--black-color);
   }
 
+  
+.closeModal {
+	display: flex;
+	justify-content: flex-end;
+}
+
+#modal_content .fa-xmark {
+	cursor: pointer;
+}
+
+#modal_content h2 {
+	display: flex;
+    justify-content: center;
+    margin-bottom: 46px;
+    font-family: 'work sans';
+    font-weight: 400;
+}
+
+#contentImgModal {
+	display: flex;
+	flex-wrap: wrap;
+	padding-inline: 70px;
+}
+
+.imgModal {
+	width: 80px;
+}
+
+.editImgModal:first-child, .editImgModal:nth-child(5n+1) {
+    padding-left: 0;
+}
+
+.editImgModal {
+    padding-left: 9px;
+	padding-bottom: 12px;
+}
+
 header {
 	display: flex;
 	justify-content: space-between;

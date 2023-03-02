@@ -22,12 +22,16 @@ document.addEventListener('DOMContentLoaded', function (event) {
                 listButton.addEventListener('click', (event) => {
                     event.preventDefault();
                     const filterButtonCategory = event.target.dataset.category;
+                    for (let i = 0; i < buttonFilter.length; i++) {
+                        if (buttonFilter[i].children[0].dataset.category === event.target.dataset.category) {
+                            buttonFilter[i].children[0].setAttribute('class', 'button_filter active');
+                        } else {
+                            buttonFilter[i].children[0].setAttribute('class', 'button_filter');
+                        }
+                    }
                     [...projectsItem].forEach(item => {
                         const projectItemCategory = item.dataset.itemCategory;
                         if (filterButtonCategory == 0 || projectItemCategory === filterButtonCategory) {
-                            if (filterButtonCategory != 0) {
-                                buttonFilter[0].children[0].setAttribute('class', 'button_filter');
-                            }
                             item.style.display = "initial";
                         } else {
                             item.style.display = "none";
@@ -47,8 +51,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
                 response.forEach(modalImageInfo => {
                     let imageUrl = modalImageInfo.imageUrl;
                     let title = modalImageInfo.title;
-                    document.getElementById('contentImgModal').innerHTML += 
-                    `<div class="editImgModal">
+                    document.getElementById('contentImgModal').innerHTML +=
+                        `<div class="editImgModal">
                         <img src=${imageUrl} class="imgModal" alt="${title}">
                     </div>`
                 })

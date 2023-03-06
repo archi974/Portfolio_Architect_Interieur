@@ -1,5 +1,3 @@
-// import "./login";
-
 document.addEventListener('DOMContentLoaded', function (event) {
     event.preventDefault();
     let gallery = document.getElementById('gallery');
@@ -62,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
                         <a id="deleteAllImg">Supprimer la galerie</a>
                     </div>`
 
-                // boucle d'image
+                // image modal loop with logo
                 response.forEach(modalImageInfo => {
                     let imageUrl = modalImageInfo.imageUrl;
                     let title = modalImageInfo.title;
@@ -89,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
     // with the connection
     let getCookie = document.cookie.split('=');
-    if (getCookie[0] === "loginToken" && getCookie[1].length === 143){ // récupérer avec le header
+    if (getCookie[0] === "loginToken" && getCookie[1].length === 143) { // retrieve with header
         let editComponent = document.getElementById('edit');
         editComponent.innerHTML =
             `<i class="fa-regular fa-pen-to-square"></i>

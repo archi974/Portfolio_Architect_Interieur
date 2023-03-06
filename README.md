@@ -73,6 +73,8 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
 
     - https://www.w3schools.com/howto/howto_css_modals.asp
 
+    - https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
+
 ## FAQ
 
   - 

@@ -5,9 +5,11 @@
 :root {
 	--green-color: #1D6154;
 	--orange-color: #B1663C;
+	--whitePeach-color: #FFFEF8;
 	--white-color: #fff;
 	--black-color: #000;
 	--softBlack-color: #3D3D3D;
+	--red-color: #D65353;
 }
 
 html, body, div, span, applet, object, iframe,
@@ -54,6 +56,10 @@ table {
 	border-spacing: 0;
 }
 /** end reset css**/
+html {
+	background-color: var(--whitePeach-color);
+}
+
 .body {
 	max-width: 1140px;
 	margin:auto;
@@ -61,11 +67,34 @@ table {
 	font-size: 14px;
 }
 
+h1{
+	display: flex;
+	flex-direction: column;
+	font-family: 'Syne';
+	font-size: 22px;
+	font-weight: 800;
+	color: var(--orange-color);
+}
+
+h2{
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 30px;
+	color: var(--green-color);
+}
+
+.alertMessageForm {
+	display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+    color: var(--red-color);
+}
+
 #edit {
 	background-color: var(--black-color);
     justify-content: center;
 	align-items: center;
-    color: #fff;
+    color: var(--white-color);
 	height: 59px;
 	display: none;
 }
@@ -83,6 +112,8 @@ table {
 	font-size: 14px;
 }
 
+/* Modal */
+
 .modal {
 	position: fixed;
     z-index: 1;
@@ -96,7 +127,7 @@ table {
 }
 
 #modal_content {
-	background-color: var(--white-color);
+	background-color: var(--whitePeach-color);
     margin: auto;
     padding: 30px;
     width: 600px;
@@ -130,17 +161,89 @@ table {
 }
 
 .imgModal {
+	display: flex;
+}
+
+.imgModal img {
 	width: 80px;
+	position: relative;
+}
+
+.logoModal {
+	position: fixed;
+    width: 80px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logoModal svg {
+	background-color: var(--black-color);
+	padding: 2px;
+	margin: 6px 3px 6px 0px;
+	border-radius: 2px;
+	fill: var(--white-color);
+}
+
+.logoModal svg:last-child{
+	margin-right: 6px;
 }
 
 .editImgModal:first-child, .editImgModal:nth-child(5n+1) {
-    padding-left: 0;
+	padding-left: 0;
 }
 
 .editImgModal {
-    padding-left: 9px;
+	padding-left: 9px;
 	padding-bottom: 12px;
 }
+
+.editImgModal svg {
+	height: 10px;
+}
+
+#modal_content hr {
+	width: 420px;
+	margin-top: 47px;
+}
+
+#modal_content input {
+	display: flex;
+	align-items: center;
+}
+
+.addAndRemoveImg {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    align-items: center;
+}
+
+#buttonAddPicture {
+	border: 1px solid var(--green-color);
+    color: var(--white-color);
+    background-color: var(--green-color);
+    border-radius: 60px;
+    font-size: 14px;
+	margin-top: 38px;
+    padding: 9px 49px;
+    font-weight: bold;
+    font-family: Syne;
+}
+#buttonAddPicture:hover, #buttonAddPicture:active {
+	color: var(--green-color);
+    background-color: var(--white-color);
+}
+
+#deleteAllImg {
+	margin-top: 23px;
+	margin-bottom: 48px;
+	color: var(--red-color);
+	font-size: 14px;
+    font-family: Syne;
+}
+
+/* navbar */
 
 header {
 	display: flex;
@@ -156,28 +259,12 @@ section {
 	margin: 50px 0
 }
 
-h1{
-	display: flex;
-	flex-direction: column;
-	font-family: 'Syne';
-	font-size: 22px;
-	font-weight: 800;
-	color: var(--orange-color);
-}
-
 h1 > span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
-;
 }
 
-h2{
-	font-family: 'Syne';
-	font-weight: 700;
-	font-size: 30px;
-	color: var(--green-color);
-}
 nav ul {
 	display: flex;
 	align-items: center;

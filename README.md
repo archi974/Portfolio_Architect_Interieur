@@ -75,6 +75,10 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
 
     - https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
 
+    - https://stackoverflow.com/questions/2007357/how-to-set-dom-element-as-first-child
+
+    - https://developer.mozilla.org/en-US/docs/Web/API/Response/status
+
 ## FAQ
 
   - 

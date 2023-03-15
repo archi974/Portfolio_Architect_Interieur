@@ -10,8 +10,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
                 let categoryId = imageInfo.categoryId;
                 gallery.innerHTML += `
                 <figure class="project_item" data-item-category="${categoryId}">
-                <img src="${imageUrl}" alt="${title}">
-                <figcaption>${title}</figcation>
+                    <img src="${imageUrl}" alt="${title}">
+                    <figcaption>${title}</figcation>
                 </figure>`;
             });
             const buttonFilter = document.querySelectorAll('.container_filter li');
@@ -21,8 +21,9 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     event.preventDefault();
                     const filterButtonCategory = event.target.dataset.category;
 
-                    // add class to filter button
-                    for (let i = 0; i < buttonFilter.length; i++) {
+                    // change active button filter
+                    const lengthButtonFilter = buttonFilter.length;
+                    for (let i = 0; i < lengthButtonFilter; i++) {
                         if (buttonFilter[i].children[0].dataset.category === event.target.dataset.category) {
                             buttonFilter[i].children[0].classList.add('active');
                         } else {
@@ -47,9 +48,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
             document.getElementById('projectEdit').addEventListener('click', (e) => {
                 e.preventDefault();
                 modal.setAttribute('class', 'modal');
-                modal.appendChild(document.createElement('div')).setAttribute('id', 'modal_content')
-                document.getElementById('modal_content').innerHTML =
+                modal.appendChild(document.createElement('div')).setAttribute('id', 'modalContent')
+                const modalContent = document.getElementById('modalContent');
+                modalContent.innerHTML =
                     `<div class="closeModal">
+                        <i class="fa-solid fa-arrow-left-long" id="previousPage"></i>
                         <i class="fa-solid fa-xmark" id="closeModal"></i>
                     </div>
                     <div class="galleryContent">
@@ -60,6 +63,25 @@ document.addEventListener('DOMContentLoaded', function (event) {
                             <input type="button" value="Ajouter une photo" id="buttonAddPicture">
                             <a id="deleteAllImg">Supprimer la galerie</a>
                         </div>
+                    </div>
+                    <div class="addPicture">
+                        <h3>Ajout photo</h3>
+                        <form class="formDragDrop">
+                            <div id="dropAddImg">
+                                <div id="contentDropAddImg">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg>
+                                    <input type="image" id="fileElem" multiple accept="image/*" onchange="handleFiles(this)" value="+ Ajouter photo">
+                                    <p>jpg, png : 4mo max</p>
+                                </div>
+                                <div id="showPicture"></div>
+                            </div>
+                            <label>Titre</label>
+                            <input type='text' class="dragImgInfo">
+                            <label>Catégorie</label>
+                            <input type='text' class="dragImgInfo">
+                            <hr>
+                            <input type="submit" value="Valider" id="submitPicture" disabled>
+                        </form>
                     </div>`
 
                 // image modal loop with logo
@@ -77,39 +99,103 @@ document.addEventListener('DOMContentLoaded', function (event) {
                             </div>
                             <p>éditer</p>
                         </div>`
-                })
+                });
+                // Button 'X' for close modal
                 document.getElementById('closeModal').addEventListener('click', (e) => {
                     e.preventDefault();
                     let buttonEdit = document.getElementById('edit');
                     buttonEdit.lastChild.replaceChildren();
                     buttonEdit.lastChild.classList.remove('modal');
                 });
-                let arrayDeleteImgButton = document.getElementsByClassName('deleteLogoModal');
-                for (let i = 0; i < arrayDeleteImgButton.length; i++) {
-                    const DeleteImgButton = arrayDeleteImgButton[i];
-                    DeleteImgButton.addEventListener('click', (e) => {
+                // button delete gallery
+                const arrayDeleteImgButton = document.getElementsByClassName('deleteLogoModal');
+                const arrayDeleteImgButtonLength = arrayDeleteImgButton.length;
+                for (let i = 0; i < arrayDeleteImgButtonLength; i++) {
+                    const deleteImgButton = arrayDeleteImgButton[i];
+                    deleteImgButton.addEventListener('click', (e) => {
                         e.preventDefault();
-                        console.log(e);
-                        // fetch(`http://localhost:5678/api/works/${id}`, {method: 'DELETE'})
+                        // console.log(e);
+                        // fetch(`http://localhost:5678/api/works/${id}`, { method: 'DELETE' })
                         //     .then(response => response.json())
                         //     .then(response => console.log(response))
 
                     });
                 }
-                let addPicture = document.getElementById('buttonAddPicture');
+                // button add picture
+                const addPicture = document.getElementById('buttonAddPicture');
+                const previousPage = document.getElementById('previousPage');
                 addPicture.addEventListener('click', (e) => {
-                    
+                    e.preventDefault;
+                    document.getElementsByClassName('addPicture')[0].style.display = "initial";
+                    document.getElementsByClassName('galleryContent')[0].style.display = "none";
+                    previousPage.style.display = "initial";
+                    document.getElementsByClassName('closeModal')[0].style.justifyContent = "space-between";
+                });
+                // button "<-" return previous page
+                previousPage.addEventListener('click', (e) => {
+                    e.preventDefault;
+                    document.getElementsByClassName('addPicture')[0].style.display = "none";
+                    document.getElementsByClassName('galleryContent')[0].style.display = "initial";
+                    previousPage.style.display = "none";
+                    document.getElementsByClassName('closeModal')[0].style.justifyContent = "flex-end";
+                });
+
+                // drag and drop image
+                let dropAddImg = document.getElementById('dropAddImg');
+
+                // Prevent default drag behaviors
+                ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                    dropAddImg.addEventListener(eventName, preventDefaults, false);
+                    document.body.addEventListener(eventName, preventDefaults, false);
+                });
+
+                // Handle dropped files
+                dropAddImg.addEventListener('drop', handleDrop, false)
+                function preventDefaults(e) {
+                    e.preventDefault()
+                    e.stopPropagation()
+                }
+                const submitButtonNewPicture = document.getElementById('submitPicture');
+                submitButtonNewPicture.addEventListener('click', (e) => {
+
                 })
+                function handleDrop(e) {
+                    let files = [...e.dataTransfer.files];
+                    files.forEach(function previewFile(file) {
+                        let reader = new FileReader();
+                        reader.readAsDataURL(file);
+                        reader.onloadend = function () {
+                            let img = document.createElement('img');
+                            img.src = reader.result;
+                            img.setAttribute('class', 'dropImgModal');
+                            document.getElementById('showPicture').appendChild(img);
+                            document.getElementById('contentDropAddImg').style.display = 'none';
+                        }
+                    })
+                    // files.forEach(function uploadFile(file) {
+                    //     let url = `http://localhost:5678/api/works/${}`
+                    //     let xhr = new XMLHttpRequest()
+                    //     let formData = new FormData()
+                    //     console.log(formData);
+                    //     xhr.open('POST', url, true)
+                    //     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+    
+                    //     formData.append('upload_preset', 'ujpu6gyk')
+                    //     formData.append('file', file)
+                    //     xhr.send(formData)
+                    // })
+                }
+                
             });
         });
 
     // with the connection
     let getCookie = document.cookie.split('=');
     if (getCookie[0] === "loginToken" && getCookie[1].length === 143) { // retrieve with header
-        let editComponent = document.getElementById('edit');
+        const editComponent = document.getElementById('edit');
         editComponent.innerHTML =
             `<i class="fa-regular fa-pen-to-square"></i>
-            <p>Mode édition</p>
+            <p class="buttonEdit">Mode édition</p>
             <button type="">publier les changements</button>`
         editComponent.style.display = 'flex';
         document.querySelector('nav li:nth-child(3)').innerHTML = `<a href="./" id="disconnect">Logout</a>`;
@@ -125,15 +211,15 @@ document.addEventListener('DOMContentLoaded', function (event) {
             document.getElementById('introduction').lastElementChild,
             document.getElementById('portfolio').firstElementChild
         ]
-        for (let i = 0; i <= arrayId.length - 1; i++) {
-            let id = ["profileImgEdit", "textDescriptionEdit", "projectEdit"]
-            let editClass = document.getElementsByClassName('edit');
+        const arrayIdLength = arrayId.length;
+        for (let i = 0; i <= arrayIdLength - 1; i++) {
+            const id = ["profileImgEdit", "textDescriptionEdit", "projectEdit"]
+            const editClass = document.getElementsByClassName('edit');
             arrayId[i].insertBefore(document.createElement('a'), arrayId[i].lastChild).setAttribute('class', 'edit')
             editClass[i].setAttribute('id', id[i]);
             editClass[i].style.cursor = 'pointer';
             editClass[i].innerHTML = '<i class="fa-regular fa-pen-to-square"></i><p>modifier</p>';
         }
-        // <i class="fa-solid fa-arrow-left-long"></i>
         // delete just 1 image
 
     }

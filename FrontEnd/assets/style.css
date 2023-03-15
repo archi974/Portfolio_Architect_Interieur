@@ -83,6 +83,12 @@ h2{
 	color: var(--green-color);
 }
 
+h3 {
+	font-size: 26px;
+	font-weight: 400;
+	font-family: 'Work Sans';
+}
+
 .alertMessageForm {
 	display: flex;
     justify-content: center;
@@ -99,7 +105,7 @@ h2{
 	display: none;
 }
 
-#edit p {
+.buttonEdit {
 	margin-left: 9px;
 	font-size: 16px;
 }
@@ -125,7 +131,7 @@ h2{
     background-color: rgba(0,0,0,0.4);
 }
 
-#modal_content {
+#modalContent {
 	background-color: var(--whitePeach-color);
     margin: auto;
     padding: 30px;
@@ -141,11 +147,11 @@ h2{
 	justify-content: flex-end;
 }
 
-#modal_content .fa-xmark {
+#modalContent .fa-xmark {
 	cursor: pointer;
 }
 
-#modal_content h2 {
+#modalContent h2 {
 	display: flex;
     justify-content: center;
     margin-bottom: 46px;
@@ -187,6 +193,14 @@ h2{
 	margin-right: 6px;
 }
 
+.mooveLogoModal {
+	display: none;
+}
+
+.imgModal:hover .mooveLogoModal {
+	display: initial;
+}
+
 .editImgModal:first-child, .editImgModal:nth-child(5n+1) {
 	padding-left: 0;
 }
@@ -200,12 +214,12 @@ h2{
 	height: 10px;
 }
 
-#modal_content hr {
+#modalContent hr {
 	width: 420px;
 	margin-top: 47px;
 }
 
-#modal_content input {
+#modalContent input {
 	display: flex;
 	align-items: center;
 }
@@ -233,6 +247,126 @@ h2{
 	color: var(--green-color);
     background-color: var(--white-color);
 }
+
+.addPicture {
+	display: none;
+}
+
+#previousPage {
+	display: none;
+}
+
+.addPicture h3 {
+	display: flex;
+    justify-content: center;
+	margin-top: 16px;
+	margin-bottom: 21px;
+}
+
+/* DRAG ELEMENT */
+
+#dropAddImg {
+	display: flex;
+    background-color: #E8F1F6;
+    margin: 15px auto;
+    border-radius: 3px;
+    height: 169px;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+}
+
+#contentDropAddImg {
+	display: flex;
+	flex-direction: column;
+}
+
+.formDragDrop label {
+	font-size: 14px;
+	font-family: 'work sans';
+	margin-bottom: 10px;
+	margin-top: 21px;
+}
+
+.formDragDrop .dragImgInfo {
+	border: none;
+    box-shadow: 0px 4px 14px rgb(0 0 0 / 9%);
+    height: 51px;
+    font-family: 'Work sans';
+    font-size: 14px;
+    padding-inline: 16px;
+}
+
+.my-form {
+	margin-bottom: 10px;
+}
+
+.button {
+	display: inline-block;
+	padding: 10px;
+	background: #ccc;
+	cursor: pointer;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+.button:hover {
+	background: #ddd;
+}
+
+#fileElem {
+    background-color: #CBD6DC;
+    padding: 10px 33px;
+	margin-top: 21px;
+    border-radius: 50px;
+    width: 173px;
+    justify-content: center;
+	color: #306685;
+}
+
+.formDragDrop {
+	display: flex;
+	flex-direction: column;
+	width: 420px;
+    margin: auto;
+}
+
+.formDragDrop svg {
+	margin-top: 28px;
+	height: 46px;
+}
+
+.formDragDrop p {
+	display: flex;
+	justify-content: center;
+	font-size: 10px;
+	margin-top: 7px;
+	margin-bottom: 19px;
+}
+
+.dropImgModal {
+	display: flex;
+    align-items: center;
+    height: 169px;
+}
+
+#submitPicture {
+	font-family: 'Syne';
+	font-weight: 700;
+	font-size: 14px;
+	color: var(--white-color);
+	background-color: var(--green-color);
+	margin : 32px auto;
+	text-align: center;
+	border-radius: 60px;
+	border: 1px solid var(--green-color);
+	padding: 9px 49px;
+}
+#submitPicture:disabled {
+	background-color: #A7A7A7;
+	border: none;
+}
+  
+/* DRAG ELEMENT */
 
 #deleteAllImg {
 	margin-top: 23px;
@@ -427,7 +561,7 @@ article .edit {
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
+#contact input[type="submit"]{
 	font-family: 'Syne';
 	font-weight: 700;
 	color: var(--white-color);
@@ -435,7 +569,12 @@ input[type="submit"]{
 	margin : 2em auto ;
 	width: 180px;
 	text-align: center;
-	border-radius: 60px ;
+	border-radius: 60px;
+	border: 1px solid var(--green-color);
+}
+#contact input[type="submit"]:hover {
+	color: var(--green-color);
+	background-color: var(--white-color);
 }
 
 footer nav ul {

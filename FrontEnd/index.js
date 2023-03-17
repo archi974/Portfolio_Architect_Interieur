@@ -66,7 +66,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     </div>
                     <div class="addPicture">
                         <h3>Ajout photo</h3>
-                        <form class="formDragDrop">
+                        <form class="formDragDrop" name="formAddImg">
                             <div id="dropAddImg">
                                 <div id="contentDropAddImg">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg>
@@ -76,11 +76,16 @@ document.addEventListener('DOMContentLoaded', function (event) {
                                 <div id="showPicture"></div>
                             </div>
                             <label>Titre</label>
-                            <input type='text' class="dragImgInfo">
+                            <input type='text' name="titleImg" class="dragImgInfo">
                             <label>Catégorie</label>
-                            <input type='text' class="dragImgInfo">
+                            <select name="categoryOption" class="dragImgInfo" id="dog-names">
+                                <option></option>
+                                <option value="Objets">Objets</option>
+                                <option value="Appartements">Appartements</option>
+                                <option value="Hotels & restaurants">Hotels & restaurants</option>
+                            </select
                             <hr>
-                            <input type="submit" value="Valider" id="submitPicture" disabled>
+                            <input type="button" value="Valider" id="submitPicture">
                         </form>
                     </div>`
 
@@ -155,16 +160,14 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     e.preventDefault()
                     e.stopPropagation()
                 }
-                const submitButtonNewPicture = document.getElementById('submitPicture');
-                submitButtonNewPicture.addEventListener('click', (e) => {
 
-                })
                 function handleDrop(e) {
                     let files = [...e.dataTransfer.files];
                     files.forEach(function previewFile(file) {
                         let reader = new FileReader();
                         reader.readAsDataURL(file);
                         reader.onloadend = function () {
+                            // console.log(reader);
                             let img = document.createElement('img');
                             img.src = reader.result;
                             img.setAttribute('class', 'dropImgModal');
@@ -172,23 +175,49 @@ document.addEventListener('DOMContentLoaded', function (event) {
                             document.getElementById('contentDropAddImg').style.display = 'none';
                         }
                     })
-                    // files.forEach(function uploadFile(file) {
-                    //     let url = `http://localhost:5678/api/works/${}`
-                    //     let xhr = new XMLHttpRequest()
-                    //     let formData = new FormData()
-                    //     console.log(formData);
-                    //     xhr.open('POST', url, true)
-                    //     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
-    
-                    //     formData.append('upload_preset', 'ujpu6gyk')
-                    //     formData.append('file', file)
-                    //     xhr.send(formData)
-                    // })
+
                 }
-                
+                const submitButtonNewPicture = document.getElementById('submitPicture');
+                // console.log(handleDrop());
+                // console.log(document.formAddImg.titleImg.value);
+                // document.formAddImg.categoryOption.value != '' && 
+                // document.formAddImg.titleImg.value != ''
+                // if (submitPicture.submit()) {
+                // console.log("CACATOES");
+                submitButtonNewPicture.addEventListener('click', (e) => {
+                    // console.log(e);
+                    // console.log("TEST");
+                    console.log(dropAddImg);
+                    // if () {
+
+                    // }
+                })
+                // files.forEach(function uploadFile(file) {
+                //     let url = `http://localhost:5678/api/works/${}`
+                //     let xhr = new XMLHttpRequest()
+                //     let formData = new FormData()
+                //     console.log(formData);
+                //     xhr.open('POST', url, true)
+                //     xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
+
+                //     formData.append('upload_preset', 'ujpu6gyk')
+                //     formData.append('file', file)
+                //     xhr.send(formData)
+                // })
+                // }
+
             });
         });
-
+    const textDescription = document.getElementById('introduction').children[1].children[0];
+    let titleDescription = "Designer d'espace";
+    let text1 = `Je raconte votre histoire, je valorise vos idées. Je vous accompagne de la conception à la livraison finale du chantier.`;
+    let text2 = `Chaque projet sera étudié en commun, de façon à mettre en valeur les volumes, les matières et les couleurs dans le respect de l’esprit des lieux et le choix adapté des matériaux. Le suivi du chantier sera assuré dans le souci du détail, le respect du planning et du budget.`;
+    let text3 = `En cas de besoin, une équipe pluridisciplinaire peut-être constituée : architecte DPLG, décorateur(trice)`;
+    textDescription.innerHTML = 
+        `<h2>${titleDescription}</h2>
+    <p>${text1}</p>
+    <p>${text2}</p>
+    <p>${text3}</p>`
     // with the connection
     let getCookie = document.cookie.split('=');
     if (getCookie[0] === "loginToken" && getCookie[1].length === 143) { // retrieve with header
@@ -221,6 +250,47 @@ document.addEventListener('DOMContentLoaded', function (event) {
             editClass[i].innerHTML = '<i class="fa-regular fa-pen-to-square"></i><p>modifier</p>';
         }
         // delete just 1 image
+        const profileImgEdit = document.getElementById('profileImgEdit');
+        profileImgEdit.addEventListener('click', (e) => {
+            e.preventDefault();
+            let newSrc = prompt("Nouvel url pour l'image");
+            let newAlt = prompt("définissez une description");
+            let validImg = confirm('Voulez vous confirmer les changements');
+            const imgProfile = document.getElementById('introduction').children[0].children[0];
+            if (validImg === true) {
+                imgProfile.src = newSrc;
+                imgProfile.alt = newAlt;
+            }
+        })
 
+        const textDescriptionEdit = document.getElementById('textDescriptionEdit');
+        textDescriptionEdit.addEventListener('click', (e) => {
+            e.preventDefault();
+            document.getElementById('introduction').children[1].children[0].innerHTML = `
+            <div class="editTextDescription">
+                <input type="button" id="newTitle" value="Changer le titre">
+                <textarea id="textDescription" name="txtname" rows="4" cols="50" maxlength="500">Écrivez votre texte</textarea>
+                <input type="button" id="validText" value="valider">
+            </div>`
+            document.getElementById('newTitle').addEventListener('click', (e) => {
+                e.preventDefault();
+                let newTitle = prompt('Voulez vous éditer un nouveau titre ?', `${titleDescription}`);
+                return newTitle;
+            })
+
+            document.getElementById('validText').addEventListener('click', (e) => {
+                e.preventDefault();
+                let textDescription = document.getElementById('textDescription').value;
+                let validText = confirm('Êtes-vous sur de vouloir confirmer les modifications ?');
+                if (newTitle != titleDescription) {
+                    titleDescription = newTitle;
+                }
+                if (validText === true) {
+                    document.getElementById('introduction').children[1].children[0].innerHTML = `
+                    <h2>${titleDescription}</h2>
+                    <p>${textDescription}</p>`
+                }
+            });
+        })
     }
 });

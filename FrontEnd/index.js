@@ -254,10 +254,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
         profileImgEdit.addEventListener('click', (e) => {
             e.preventDefault();
             let newSrc = prompt("Nouvel url pour l'image");
-            let newAlt = prompt("définissez une description");
+            let newAlt = prompt("Définissez une description");
             let validImg = confirm('Voulez vous confirmer les changements');
             const imgProfile = document.getElementById('introduction').children[0].children[0];
-            if (validImg === true) {
+            if (validImg === true && newSrc != '') {
                 imgProfile.src = newSrc;
                 imgProfile.alt = newAlt;
             }
@@ -270,7 +270,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
             document.getElementById('introduction').children[1].children[0].innerHTML = `
             <div class="editTextDescription">
                 <input type="button" id="newTitle" value="Changer le titre">
-                <textarea id="textDescription" name="txtname" rows="4" cols="50" maxlength="500" placeholder="Écrivez votre texte"></textarea>
+                <textarea id="textDescription" name="txtname" rows="4" cols="50" maxlength="600" placeholder="Écrivez votre texte"></textarea>
                 <input type="button" id="validText" value="valider">
             </div>`
             let newTitle = titleDescription;
@@ -279,24 +279,23 @@ document.addEventListener('DOMContentLoaded', function (event) {
                 newTitle = prompt('Voulez vous éditer un nouveau titre ?', `${titleDescription}`);
             })
 
+            // description modification
             document.getElementById('validText').addEventListener('click', (e) => {
                 e.preventDefault();
                 let textDescription = document.getElementById('textDescription').value;
                 let validText = confirm('Êtes-vous sur de vouloir confirmer les modifications ?');
-                console.log(newTitle);
                 if (newTitle != titleDescription && newTitle != '') {
                     titleDescription = newTitle;
                 }
-                let arrayText = textDescription.split("\n");
-                console.log(arrayText);
+                let arrayText = textDescription.split("\n\n");
                 if (validText === true) {
-                    if (typeof arrayText != 'object') {
-                        document.getElementById('introduction').children[1].children[0].innerHTML = `
+                    if (arrayText[1] === undefined) {
+                        document.getElementById('textEdit').innerHTML = `
                         <h2>${titleDescription}</h2>
                         <p>${textDescription}</p>`
                     } else {
                         for (let i = 0; i < arrayText.length; i++) {
-                            document.getElementById('introduction').children[1].children[0].innerHTML = `
+                            document.getElementById('textEdit').innerHTML = `
                             <h2>${titleDescription}</h2>
                             <p>${arrayText[0]}</p>
                             <p>${arrayText[1]}</p>

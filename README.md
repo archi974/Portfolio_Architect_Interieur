@@ -41,7 +41,6 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
 - Dans le dossier back depuis le terminal :
     - Effectuer la commande `npm install` ou `npm i`.
     - Puis lancer le back avec la commande `npm start`.
-- Installer [Visual Studio Code](https://code.visualstudio.com/), puis lancer l'application.
 - Installer l'extension [Live Server](https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer) sur Visual Studo Code.
 - Après le lancement du back dans un terminal récupération du code et ouverture avec Visual Studio Code, lancer "Go Live" en bas à droite
 
@@ -71,6 +70,8 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
 
     - https://stackoverflow.com/questions/4564251/change-the-mouse-pointer-using-javascript
 
+    - https://developer.mozilla.org/en-US/docs/Web/API/Element/replaceChildren
+
     - https://www.w3schools.com/howto/howto_css_modals.asp
 
     - https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
@@ -79,9 +80,27 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
 
     - https://developer.mozilla.org/en-US/docs/Web/API/Response/status
 
+    - https://blog.hubspot.com/website/html-dropdown
+
+    - https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/
+
+    - https://developer.mozilla.org/fr/docs/Web/API/Event/preventDefault
+
+    - https://developer.mozilla.org/fr/docs/Web/API/Event/stopPropagation
+
+    - https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer
+
+    - https://stackoverflow.com/questions/51578629/how-can-i-put-an-input-in-the-alert-box
+
+    - https://developer.mozilla.org/fr/docs/Web/API/Window/prompt
+
+    - https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea
+
+    - https://www.scaler.com/topics/css-disable-button/
+
 ## FAQ
 
-  - 
+  - Pourquoi utilise t-on preventDefault ? Permet de ne pas afficher dans la barre de navigation le contenu
 
 ## Droits d’auteurs et informations sur la licence.
 

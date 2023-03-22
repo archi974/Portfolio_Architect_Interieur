@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function (event) {
     event.preventDefault();
     let gallery = document.getElementById('gallery');
+    // create picture loop with description on load page
     fetch('http://localhost:5678/api/works')
         .then(response => response.json())
         .then(response => {
@@ -44,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
             });
 
             // Modal create content
-            if (getCookie[0] === "loginToken" && getCookie[1].length === 143) {
+            if (cookieToken[0] === "loginToken" && cookieToken[1].length === 143) {
                 const modal = document.getElementById('edit').appendChild(document.createElement("div"));
                 document.getElementById('projectEdit').addEventListener('click', (e) => {
                     e.preventDefault();
@@ -115,18 +116,24 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     });
                     // button delete gallery
                     const arrayDeleteImgButton = document.getElementsByClassName('deleteLogoModal');
-                    const arrayDeleteImgButtonLength = arrayDeleteImgButton.length;
-                    for (let i = 0; i < arrayDeleteImgButtonLength; i++) {
-                        const deleteImgButton = arrayDeleteImgButton[i];
-                        deleteImgButton.addEventListener('click', (e) => {
-                            e.preventDefault();
-                            // console.log(e);
-                            // fetch(`http://localhost:5678/api/works/${id}`, { method: 'DELETE' })
-                            //     .then(response => response.json())
-                            //     .then(response => console.log(response))
+                    const objectImgLength = response.length;
+                        for (let i = 0; i < objectImgLength; i++) {
+                            let deleteImgButton = arrayDeleteImgButton[i];
+                            let pictureId = response[i].id;
+                            deleteImgButton.addEventListener('click', async (e) => {
+                                e.preventDefault();
+                                let responseDelete = await fetch(`http://localhost:5678/api/works/${pictureId}`, {
+                                    method: 'GET',
+                                    headers: {
+                                        'Authorization': `Bearer ${cookieToken[1]}`
+                                    },
+                                    body: pictureId
+                                });
+                                let result = await responseDelete.json();
+                                console.log(result);
+                            });
+                        }
 
-                        });
-                    }
                     // button add picture
                     const addPicture = document.getElementById('buttonAddPicture');
                     const previousPage = document.getElementById('previousPage');
@@ -206,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
                             fetch(url, {
                                 method: 'POST',
                                 headers: {
-                                    'Authorization': `bearer ${getCookie[1]}`
+                                    'Authorization': `bearer ${cookieToken[1]}`
                                 },
                                 body: formData
                             })
@@ -216,11 +223,10 @@ document.addEventListener('DOMContentLoaded', function (event) {
                 });
             }
         });
-    const textDescription = document.getElementById('textEdit').children[0];
-    let titleDescription = textDescription.innerHTML;
+    let titleDescription = document.getElementById('textEdit').children[0].innerHTML;
     // with the connection
-    let getCookie = document.cookie.split('=');
-    if (getCookie[0] === "loginToken" && getCookie[1].length === 143) { // retrieve with header
+    let cookieToken = document.cookie.split('=');
+    if (cookieToken[0] === "loginToken" && cookieToken[1].length === 143) { // retrieve with header
         const editComponent = document.getElementById('edit');
         editComponent.innerHTML =
             `<i class="fa-regular fa-pen-to-square"></i>
@@ -267,12 +273,16 @@ document.addEventListener('DOMContentLoaded', function (event) {
         const textDescriptionEdit = document.getElementById('textDescriptionEdit');
         textDescriptionEdit.addEventListener('click', (e) => {
             e.preventDefault();
-            document.getElementById('introduction').children[1].children[0].innerHTML = `
+            const textEditId = document.getElementById('textEdit');
+            let originalText = [textEditId.children[0].innerHTML, textEditId.children[1].innerHTML, textEditId.children[2].innerHTML, textEditId.children[3].innerHTML];
+            textEditId.innerHTML = `
             <div class="editTextDescription">
                 <input type="button" id="newTitle" value="Changer le titre">
                 <textarea id="textDescription" name="txtname" rows="4" cols="50" maxlength="600" placeholder="Écrivez votre texte"></textarea>
                 <input type="button" id="validText" value="valider">
             </div>`
+
+            // new title description
             let newTitle = titleDescription;
             document.getElementById('newTitle').addEventListener('click', (e) => {
                 e.preventDefault();
@@ -288,20 +298,29 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     titleDescription = newTitle;
                 }
                 let arrayText = textDescription.split("\n\n");
-                if (validText === true) {
+                console.log(textDescription);
+                if (validText === false || textDescription === "") {
+                    document.getElementById('textEdit').innerHTML = `
+                        <h2>${originalText[0]}</h2>
+                        <p>${originalText[1]}</p>
+                        <p>${originalText[2]}</p>
+                        <p>${originalText[3]}</p>
+                    `
+                } else {
                     if (arrayText[1] === undefined) {
-                        document.getElementById('textEdit').innerHTML = `
+                        textEditId.innerHTML = `
                         <h2>${titleDescription}</h2>
                         <p>${textDescription}</p>`
                     } else {
                         for (let i = 0; i < arrayText.length; i++) {
-                            document.getElementById('textEdit').innerHTML = `
+                            textEditId.innerHTML = `
                             <h2>${titleDescription}</h2>
                             <p>${arrayText[0]}</p>
                             <p>${arrayText[1]}</p>
                             <p>${arrayText[2]}</p>`
                         }
                     }
+                    
                 }
             });
         })

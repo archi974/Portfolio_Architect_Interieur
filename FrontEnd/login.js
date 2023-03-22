@@ -11,17 +11,17 @@ document.getElementById('buttonSubmit').addEventListener('click', async function
     
         });
         let result = await response.json();
-        let alertMessage = document.querySelector('form').appendChild(document.createElement('div'), document.querySelector('form').lastChild);
-        alertMessage.setAttribute('class', 'alertMessageForm')
-        if (response.status === 200) {
-            document.cookie = `loginToken=${result.token}`;
-            location.replace("http://127.0.0.1:5500/FrontEnd/");
-        } else if(response.status === 404) {
-            alertMessage.innerHTML = "Votre E-mail ne correspond pas.";
-        } else if(response.status === 401){
-            alertMessage.innerHTML = "Votre mot de passe ne correspond pas.";
-        } else {
-            alertMessage.innerHTML = "Veuillez renseigner les champs E-mail et mot de passe";
+        switch (response.status) {
+            case 200:
+                document.cookie = `loginToken=${result.token}`;
+                location.replace("http://127.0.0.1:5500/FrontEnd/");
+            break;
+            case 404:
+                document.getElementById("errorEmail").innerHTML = "Votre E-mail ne correspond pas.";
+            break;
+            case 401:
+                document.getElementById("errorPassword").innerHTML = "Votre mot de passe ne correspond pas.";
+            break;
         }
     } catch (error) {
         console.error(error);

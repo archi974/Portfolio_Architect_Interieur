@@ -98,6 +98,12 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
 
     - https://www.scaler.com/topics/css-disable-button/
 
+    - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split
+
+    - https://stackoverflow.com/questions/21143504/drag-and-drop-how-to-get-the-url-of-image-being-dropped-if-image-is-a-link-not
+
+    - https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
+
 ## FAQ
 
   - Pourquoi utilise t-on preventDefault ? Permet de ne pas afficher dans la barre de navigation le contenu

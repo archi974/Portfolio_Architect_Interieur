@@ -89,10 +89,10 @@ h3 {
 	font-family: 'Work Sans';
 }
 
-.alertMessageForm {
+#errorEmail, #errorPassword {
 	display: flex;
     justify-content: center;
-    margin-bottom: 10px;
+    margin-top: 15px;
     color: var(--red-color);
 }
 

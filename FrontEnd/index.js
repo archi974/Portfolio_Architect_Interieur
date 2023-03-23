@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     modal.appendChild(document.createElement('div')).setAttribute('id', 'modalContent')
                     const modalContent = document.getElementById('modalContent');
                     modalContent.innerHTML =
-                        `<div class="closeModal">
+                    `<div class="closeModal">
                         <i class="fa-solid fa-arrow-left-long" id="previousPage"></i>
                         <i class="fa-solid fa-xmark" id="closeModal"></i>
                     </div>
@@ -68,11 +68,11 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     </div>
                     <div class="addPicture">
                         <h3>Ajout photo</h3>
-                        <form class="formDragDrop" name="formAddImg">
+                        <form class="formDragDrop" name="formAddImg" enctype="multipart/form-data">
                             <div id="dropAddImg">
                                 <div id="contentDropAddImg">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg>
-                                    <input type="image" id="fileElem" multiple accept="image/*" value="+ Ajouter photo">
+                                    <input type="file" id="fileElem" accept="image/*" value="+ Ajouter photo">
                                     <p>jpg, png : 4mo max</p>
                                 </div>
                                 <div id="showPicture"></div>
@@ -117,22 +117,23 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     // button delete gallery
                     const arrayDeleteImgButton = document.getElementsByClassName('deleteLogoModal');
                     const objectImgLength = response.length;
-                        for (let i = 0; i < objectImgLength; i++) {
-                            let deleteImgButton = arrayDeleteImgButton[i];
-                            let pictureId = response[i].id;
-                            deleteImgButton.addEventListener('click', async (e) => {
-                                e.preventDefault();
-                                let responseDelete = await fetch(`http://localhost:5678/api/works/${pictureId}`, {
-                                    method: 'GET',
-                                    headers: {
-                                        'Authorization': `Bearer ${cookieToken[1]}`
-                                    },
-                                    body: pictureId
-                                });
-                                let result = await responseDelete.json();
-                                console.log(result);
-                            });
-                        }
+                    // for (let i = 0; i < objectImgLength; i++) {
+                    //     let deleteImgButton = arrayDeleteImgButton[i];
+                    //     let pictureId = response[i].id;
+                    //     deleteImgButton.addEventListener('click', async (e) => {
+                    //         e.preventDefault();
+                    //         console.log(pictureId);
+                    //         let responseDelete = await fetch(`http://localhost:5678/api/works/${pictureId}`, {
+                    //             method: 'DELETE',
+                    //             headers: {
+                    //                 'Authorization': `Bearer ${cookieToken[1]}`
+                    //             },
+                    //             body: pictureId
+                    //         });
+                    //         let result = await responseDelete.json();
+                    //         console.log(result);
+                    //     });
+                    // }
 
                     // button add picture
                     const addPicture = document.getElementById('buttonAddPicture');
@@ -167,15 +168,24 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     }
                     let urlNewPicture = '';
                     // create an image with drop link
+                    console.log(document.getElementById('fileElem').files[0]);
                     dropAddImg.addEventListener('drop', function handleDrop(e) {
-                        urlNewPicture = e.dataTransfer.getData('URL');
-                        document.getElementById('contentDropAddImg').style.display = 'none';
-                        dropAddImg.style.border = 'none';
-                        let newPicture = document.createElement('img');
-                        newPicture.src = urlNewPicture;
-                        newPicture.setAttribute('class', 'dropImgModal');
-                        document.getElementById('showPicture').appendChild(newPicture);
-                    }, false)
+                        // e.dataTransfer.getData('URL');
+                        // console.log([...e.dataTransfer.files]);
+                        // if (e.dataTransfer.getData('URL')) {
+                        //     console.log("DEDANS LE IF");
+                        // } else {
+                        //     console.log("DANS LE ELSE");
+                        //     console.log(document.getElementById('dropAddImg'));
+                        // }
+                        // urlNewPicture = e.dataTransfer.file;
+                        // document.getElementById('contentDropAddImg').style.display = 'none';
+                        // dropAddImg.style.border = 'none';
+                        // let newPicture = document.createElement('img');
+                        // newPicture.src = urlNewPicture;
+                        // newPicture.setAttribute('class', 'dropImgModal');
+                        // document.getElementById('showPicture').appendChild(newPicture);
+                    })
 
                     // create a style border when we arrive in the drag area
                     dropAddImg.addEventListener('dragenter', (e) => {
@@ -200,23 +210,34 @@ document.addEventListener('DOMContentLoaded', function (event) {
                         // console.log("URL de l'image => " + urlNewPicture);
                         // console.log("Titre de l'image => " + addTitlePicture);
                         // console.log("Categorie de l'image => " + addCategoryPicture);
-                        const url = `http://localhost:5678/api/works/`
+                        // console.log("Token => " + cookieToken[1]);
                         const formData = new FormData()
-                        formData.append('imageUrl', urlNewPicture);
+                        const test = document.getElementById('fileElem');
+                        console.log(test.files[0]);
+                        formData.append('image', test.files[0]);
                         formData.append('title', addTitlePicture);
-                        formData.append('categoryId', addCategoryPicture);
+                        formData.append('category', addCategoryPicture);
+                        // const formData = {
+                        //     'imageUrl': urlNewPicture,
+                        //     'title': addTitlePicture,
+                        //     'categoryId': addCategoryPicture
+                        // }
+                        // console.log(formData);
 
-                        // headers: {
-                        //     'Content-Type': 'application/json;charset=utf-8'
-                        // },
-                        if (addTitlePicture != '' && addCategoryPicture != '' && urlNewPicture != '') {
-                            fetch(url, {
+                        // 'Content-Type': 'application/json;charset=utf-8'
+                        // 'Content-Type': 'multipart/form-data',
+                        // 'Content-Type': 'application/json',
+
+                        if (addTitlePicture && addCategoryPicture) {
+                            fetch(`http://localhost:5678/api/works/`, {
                                 method: 'POST',
                                 headers: {
-                                    'Authorization': `bearer ${cookieToken[1]}`
+                                    'Authorization': `Bearer ${cookieToken[1]}`,
                                 },
                                 body: formData
                             })
+                        } else {
+                            console.log("PAS BON");
                         }
                     })
 

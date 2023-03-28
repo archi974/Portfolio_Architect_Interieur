@@ -53,7 +53,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     modal.appendChild(document.createElement('div')).setAttribute('id', 'modalContent')
                     const modalContent = document.getElementById('modalContent');
                     modalContent.innerHTML =
-                    `<div class="closeModal">
+                        `<div class="closeModal">
                         <i class="fa-solid fa-arrow-left-long" id="previousPage"></i>
                         <i class="fa-solid fa-xmark" id="closeModal"></i>
                     </div>
@@ -72,14 +72,17 @@ document.addEventListener('DOMContentLoaded', function (event) {
                             <div id="dropAddImg">
                                 <div id="contentDropAddImg">
                                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M448 80c8.8 0 16 7.2 16 16V415.8l-5-6.5-136-176c-4.5-5.9-11.6-9.3-19-9.3s-14.4 3.4-19 9.3L202 340.7l-30.5-42.7C167 291.7 159.8 288 152 288s-15 3.7-19.5 10.1l-80 112L48 416.3l0-.3V96c0-8.8 7.2-16 16-16H448zM64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zm80 192a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg>
-                                    <input type="file" id="fileElem" accept="image/*" value="+ Ajouter photo">
+                                    <div class="fileElem">
+                                        <input type="file" id="dataFileElem" accept="image/*" name="test">
+                                        <label for="test">+ Ajouter photo</label>
+                                    </div>
                                     <p>jpg, png : 4mo max</p>
                                 </div>
                                 <div id="showPicture"></div>
                             </div>
-                            <label>Titre</label>
+                            <label class="dataForm">Titre</label>
                             <input type='text' name="titleImg" class="dragImgInfo">
-                            <label>Catégorie</label>
+                            <label class="dataForm">Catégorie</label>
                             <select name="categoryOption" class="dragImgInfo">
                                 <option></option>
                                 <option value="1">Objets</option>
@@ -158,7 +161,8 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     let dropAddImg = document.getElementById('dropAddImg');
 
                     // Prevent default drag behaviors
-                    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                    let eventDrag = ['dragenter', 'dragover', 'dragleave', 'drop']
+                    eventDrag.forEach(eventName => {
                         dropAddImg.addEventListener(eventName, preventDefaults, false);
                         document.body.addEventListener(eventName, preventDefaults, false);
                     });
@@ -167,66 +171,80 @@ document.addEventListener('DOMContentLoaded', function (event) {
                         e.stopPropagation()
                     }
                     let urlNewPicture = '';
+                    let resultData = {};
                     // create an image with drop link
-                    console.log(document.getElementById('fileElem').files[0]);
-                    dropAddImg.addEventListener('drop', function handleDrop(e) {
-                        // e.dataTransfer.getData('URL');
-                        // console.log([...e.dataTransfer.files]);
-                        // if (e.dataTransfer.getData('URL')) {
-                        //     console.log("DEDANS LE IF");
-                        // } else {
-                        //     console.log("DANS LE ELSE");
-                        //     console.log(document.getElementById('dropAddImg'));
-                        // }
-                        // urlNewPicture = e.dataTransfer.file;
-                        // document.getElementById('contentDropAddImg').style.display = 'none';
-                        // dropAddImg.style.border = 'none';
-                        // let newPicture = document.createElement('img');
-                        // newPicture.src = urlNewPicture;
-                        // newPicture.setAttribute('class', 'dropImgModal');
-                        // document.getElementById('showPicture').appendChild(newPicture);
+                    dropAddImg.addEventListener(eventDrag[3], (e) => {
+                        e.preventDefault();
+
+                        let urlImg = e.dataTransfer.getData('URL');
+                        let fileImg = e.dataTransfer.files[0];
+                        let srcVerif = document.getElementById('showPicture');
+                        if (srcVerif.children[0] != undefined) {
+                            srcVerif.replaceChildren(srcVerif.children[1])
+                        }
+                        // computer file
+                        if (fileImg) {
+                            let reader = new FileReader()
+                            reader.onload = function (e) {
+                                urlNewPicture = e.target.result;
+                                document.getElementById('contentDropAddImg').style.display = 'none';
+                                dropAddImg.style.border = 'none';
+                                let newPicture = document.createElement('img');
+                                newPicture.src = urlNewPicture;
+                                newPicture.setAttribute('class', 'dropImgModal');
+                                document.getElementById('showPicture').appendChild(newPicture);
+                            };
+                            reader.readAsDataURL(fileImg);
+                            resultData = fileImg;
+                            // navigateur url file
+                        } else if (urlImg) {
+                            urlNewPicture = urlImg;
+                            document.getElementById('contentDropAddImg').style.display = 'none';
+                            dropAddImg.style.border = 'none';
+                            let newPicture = document.createElement('img');
+                            newPicture.src = urlNewPicture;
+                            newPicture.setAttribute('class', 'dropImgModal');
+                            document.getElementById('showPicture').appendChild(newPicture);
+                            fetch(urlNewPicture)
+                            .then(response => response.blob())
+                            .then(response => {
+                                resultData = response;
+                            })
+                        } else {
+                            alert("Veuillez mettre une image s'il vous plait")
+                        }
+
                     })
 
                     // create a style border when we arrive in the drag area
-                    dropAddImg.addEventListener('dragenter', (e) => {
+                    dropAddImg.addEventListener(eventDrag[0], (e) => {
                         e.preventDefault();
                         dropAddImg.style.border = '5px dashed var(--green-color)';
                         document.getElementById('contentDropAddImg').style.display = 'none';
                     })
 
                     // delete style border when we release picture in drag area
-                    dropAddImg.addEventListener('dragleave', (e) => {
+                    dropAddImg.addEventListener(eventDrag[2], (e) => {
                         e.preventDefault();
                         document.getElementById('contentDropAddImg').style.display = 'flex';
                     })
 
                     // submit data form and create picture in database
                     const submitButtonNewPicture = document.getElementById('submitPicture');
-                    submitButtonNewPicture.addEventListener('click', (e) => {
+                    submitButtonNewPicture.addEventListener('click', (e, ) => {
                         e.preventDefault();
 
                         let addTitlePicture = document.formAddImg.titleImg.value
                         let addCategoryPicture = document.formAddImg.categoryOption.value;
-                        // console.log("URL de l'image => " + urlNewPicture);
-                        // console.log("Titre de l'image => " + addTitlePicture);
-                        // console.log("Categorie de l'image => " + addCategoryPicture);
-                        // console.log("Token => " + cookieToken[1]);
+                        
                         const formData = new FormData()
-                        const test = document.getElementById('fileElem');
-                        console.log(test.files[0]);
-                        formData.append('image', test.files[0]);
+                        if(resultData.constructor === Object){
+                            resultData = document.getElementById('dataFileElem').files[0];
+                        }
+                        console.log(typeof resultData);
+                        formData.append('image', resultData);
                         formData.append('title', addTitlePicture);
                         formData.append('category', addCategoryPicture);
-                        // const formData = {
-                        //     'imageUrl': urlNewPicture,
-                        //     'title': addTitlePicture,
-                        //     'categoryId': addCategoryPicture
-                        // }
-                        // console.log(formData);
-
-                        // 'Content-Type': 'application/json;charset=utf-8'
-                        // 'Content-Type': 'multipart/form-data',
-                        // 'Content-Type': 'application/json',
 
                         if (addTitlePicture && addCategoryPicture) {
                             fetch(`http://localhost:5678/api/works/`, {
@@ -341,7 +359,7 @@ document.addEventListener('DOMContentLoaded', function (event) {
                             <p>${arrayText[2]}</p>`
                         }
                     }
-                    
+
                 }
             });
         })

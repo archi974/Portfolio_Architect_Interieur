@@ -281,7 +281,7 @@ h3 {
 	flex-direction: column;
 }
 
-.formDragDrop label {
+.formDragDrop .dataForm {
 	font-size: 14px;
 	font-family: 'work sans';
 	margin-bottom: 10px;
@@ -313,14 +313,31 @@ h3 {
 	background: #ddd;
 }
 
-#fileElem {
-    background-color: #CBD6DC;
-    padding: 10px 33px;
+.fileElem {
+	position: relative;
+	display: inline-block;
+	width: 173px;
 	margin-top: 21px;
-    border-radius: 50px;
-    width: 173px;
-    justify-content: center;
+}
+  
+.fileElem input[type="file"] {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0;
+	cursor: pointer;
+}
+  
+.fileElem label {
+	display: block;
+	padding: 10px 33px;
+	text-align: center;
+	background-color: #CBD6DC;
 	color: #306685;
+	border-radius: 50px;
+	cursor: pointer;
 }
 
 .formDragDrop {

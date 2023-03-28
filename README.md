@@ -82,8 +82,6 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
 
     - https://blog.hubspot.com/website/html-dropdown
 
-    - https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/
-
     - https://developer.mozilla.org/fr/docs/Web/API/Event/preventDefault
 
     - https://developer.mozilla.org/fr/docs/Web/API/Event/stopPropagation
@@ -103,6 +101,8 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
     - https://stackoverflow.com/questions/21143504/drag-and-drop-how-to-get-the-url-of-image-being-dropped-if-image-is-a-link-not
 
     - https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
+
+    - https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/
 
 ## FAQ
 

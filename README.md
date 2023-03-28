@@ -104,9 +104,13 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
 
     - https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/
 
+    - https://developer.mozilla.org/fr/docs/Web/API/Blob/Blob
+
 ## FAQ
 
   - Pourquoi utilise t-on preventDefault ? Permet de ne pas afficher dans la barre de navigation le contenu
+
+  - Quel est la différence entre typeof variable et variable.constructor pour un objet ? variable.constructor va donner la nature de l'objet, un objet file/blob/objet alors qu'un typeof retournera uniquement objet pour ces trois type d'objet différent.
 
 ## Droits d’auteurs et informations sur la licence.
 

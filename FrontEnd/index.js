@@ -120,23 +120,21 @@ document.addEventListener('DOMContentLoaded', function (event) {
                     // button delete gallery
                     const arrayDeleteImgButton = document.getElementsByClassName('deleteLogoModal');
                     const objectImgLength = response.length;
-                    // for (let i = 0; i < objectImgLength; i++) {
-                    //     let deleteImgButton = arrayDeleteImgButton[i];
-                    //     let pictureId = response[i].id;
-                    //     deleteImgButton.addEventListener('click', async (e) => {
-                    //         e.preventDefault();
-                    //         console.log(pictureId);
-                    //         let responseDelete = await fetch(`http://localhost:5678/api/works/${pictureId}`, {
-                    //             method: 'DELETE',
-                    //             headers: {
-                    //                 'Authorization': `Bearer ${cookieToken[1]}`
-                    //             },
-                    //             body: pictureId
-                    //         });
-                    //         let result = await responseDelete.json();
-                    //         console.log(result);
-                    //     });
-                    // }
+                    for (let i = 0; i < objectImgLength; i++) {
+                        let deleteImgButton = arrayDeleteImgButton[i];
+                        let pictureId = response[i].id;
+                        deleteImgButton.addEventListener('click', async (e) => {
+                            e.preventDefault();
+                            let responseDelete = await fetch(`http://localhost:5678/api/works/${pictureId}`, {
+                                method: 'DELETE',
+                                headers: {
+                                    'Authorization': `Bearer ${cookieToken[1]}`
+                                },
+                                body: pictureId
+                            });
+                            await responseDelete.json();
+                        });
+                    }
 
                     // button add picture
                     const addPicture = document.getElementById('buttonAddPicture');
@@ -170,6 +168,20 @@ document.addEventListener('DOMContentLoaded', function (event) {
                         e.preventDefault()
                         e.stopPropagation()
                     }
+
+                    // create a style border when we arrive in the drag area
+                    dropAddImg.addEventListener(eventDrag[0], (e) => {
+                        e.preventDefault();
+                        dropAddImg.style.border = '5px dashed var(--green-color)';
+                        document.getElementById('contentDropAddImg').style.display = 'none';
+                    })
+
+                    // delete style border when we release picture in drag area
+                    dropAddImg.addEventListener(eventDrag[2], (e) => {
+                        e.preventDefault();
+                        document.getElementById('contentDropAddImg').style.display = 'flex';
+                    })
+
                     let urlNewPicture = '';
                     let resultData = {};
                     // create an image with drop link
@@ -214,19 +226,6 @@ document.addEventListener('DOMContentLoaded', function (event) {
                             alert("Veuillez mettre une image s'il vous plait")
                         }
 
-                    })
-
-                    // create a style border when we arrive in the drag area
-                    dropAddImg.addEventListener(eventDrag[0], (e) => {
-                        e.preventDefault();
-                        dropAddImg.style.border = '5px dashed var(--green-color)';
-                        document.getElementById('contentDropAddImg').style.display = 'none';
-                    })
-
-                    // delete style border when we release picture in drag area
-                    dropAddImg.addEventListener(eventDrag[2], (e) => {
-                        e.preventDefault();
-                        document.getElementById('contentDropAddImg').style.display = 'flex';
                     })
 
                     // submit data form and create picture in database

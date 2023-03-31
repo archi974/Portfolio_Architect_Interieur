@@ -16,7 +16,7 @@
 ## Projet : Réalissation de la partie dynamique du front d'un portfolio d'architecte en JavaScript
 ## Informations globales :
 
-- Status : 🟠 En cours
+- Status : 🟢 Terminé
 - Projet réaliser seul
 - Lien vers le [GitHub](https://github.com/archi974/Portfolio_Architect_Interieur)
 
@@ -28,9 +28,11 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
 
 ## Objectif :
 
-- Récupérer la gallerie d'image et leurs légende depuis l'API
-- Crée un filtre intéractif avec des boutons
-- Crée une page de connexion, enregistrer les informations dans un token et la base de donnée
+- Récupérer dynamiquement les données des travaux via l'API ✅
+- Ajouter le tri des projets par catégorie dans la galerie ✅
+- Intégrer la page de connexion pour le site ✅
+- Ajouter la modale pour gérer les projets ✅
+- Créer le formulaire pour l'ajout de projet ✅
 
 ## Instruction d'installation et d'utilisation :
 
@@ -47,6 +49,7 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
 ## Problème et corrections éventuelles apportées :
 
   - Erreur 405 "Method Not Allowed" à l'envoi du formulaire de connexion. Mauvaise écriture du code, ne pas utiliser les onClick et comprendre les requêtes POST avec https://fr.javascript.info/fetch#requetes-post
+  - Erreur de fetch post avec FormData. Rectification de l'erreur avec blob et fileReader pour crée des objets qui peuvent être append dans l'API
 
 # Site utiliser
 

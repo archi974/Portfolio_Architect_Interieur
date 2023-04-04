@@ -289,7 +289,7 @@ document.addEventListener('DOMContentLoaded', function () {
         editBalise.innerHTML =
             `<i class="fa-regular fa-pen-to-square"></i>
             <p class="editText">Mode édition</p>
-            <button>publier les changements</button>`
+            <button id="publishChanges">publier les changements</button>`
         editBalise.style.display = 'flex';
         document.querySelector('nav li:nth-child(3)').innerHTML = `<a href="./" id="disconnect">Logout</a>`;
         document.getElementById('disconnect').addEventListener('click', function (event) {
@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let newAlt = prompt("Définissez une description");
             let validImg = confirm('Voulez vous confirmer les changements');
             const imgProfile = document.getElementById('introduction').children[0].children[0];
-            if (validImg === true && newSrc != '') {
+            if (validImg === true && newSrc) {
                 imgProfile.src = newSrc;
                 imgProfile.alt = newAlt;
             }

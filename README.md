@@ -53,67 +53,67 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
 
 # Site utiliser
 
-    - https://www.equinode.com/fonctions-javascript/executer-du-code-javascript-au-chargement-de-la-page#:~:text=%22domReady%22%20est%20une%20fonction%20JavaScript,f()%3B%20%7D%20else%20%7B%20document.
+    https://www.equinode.com/fonctions-javascript/executer-du-code-javascript-au-chargement-de-la-page#:~:text=%22domReady%22%20est%20une%20fonction%20JavaScript,f()%3B%20%7D%20else%20%7B%20document.
 
-    - https://www.codemzy.com/blog/connect-front-end-website-to-back-end
+    https://www.codemzy.com/blog/connect-front-end-website-to-back-end
 
-    - https://forum.freecodecamp.org/t/its-this-a-good-way-to-create-a-image-loop/323175
+    https://forum.freecodecamp.org/t/its-this-a-good-way-to-create-a-image-loop/323175
 
-    - https://www.xul.fr/javascript/form-intro.php
+    https://www.xul.fr/javascript/form-intro.php
 
-    - https://www.digitalocean.com/community/tutorials/understanding-destructuring-rest-parameters-and-spread-syntax-in-javascript-fr
+    https://www.digitalocean.com/community/tutorials/understanding-destructuring-rest-parameters-and-spread-syntax-in-javascript-fr
 
-    - https://stackoverflow.com/questions/14573223/set-cookie-and-get-cookie-with-javascript
+    https://stackoverflow.com/questions/14573223/set-cookie-and-get-cookie-with-javascript
 
-    - http://talkerscode.com/howto/javascript-delete-session-cookie.php
+    http://talkerscode.com/howto/javascript-delete-session-cookie.php
 
-    - https://flexiple.com/javascript/javascript-appendchild/
+    https://flexiple.com/javascript/javascript-appendchild/
 
-    - https://stackoverflow.com/questions/12274748/setting-multiple-attributes-for-an-element-at-once-with-javascript
+    https://stackoverflow.com/questions/12274748/setting-multiple-attributes-for-an-element-at-once-with-javascript
 
-    - https://stackoverflow.com/questions/4564251/change-the-mouse-pointer-using-javascript
+    https://stackoverflow.com/questions/4564251/change-the-mouse-pointer-using-javascript
 
-    - https://developer.mozilla.org/en-US/docs/Web/API/Element/replaceChildren
+    https://developer.mozilla.org/en-US/docs/Web/API/Element/replaceChildren
 
-    - https://www.w3schools.com/howto/howto_css_modals.asp
+    https://www.w3schools.com/howto/howto_css_modals.asp
 
-    - https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
+    https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
 
-    - https://stackoverflow.com/questions/2007357/how-to-set-dom-element-as-first-child
+    https://stackoverflow.com/questions/2007357/how-to-set-dom-element-as-first-child
 
-    - https://developer.mozilla.org/en-US/docs/Web/API/Response/status
+    https://developer.mozilla.org/en-US/docs/Web/API/Response/status
 
-    - https://blog.hubspot.com/website/html-dropdown
+    https://blog.hubspot.com/website/html-dropdown
 
-    - https://developer.mozilla.org/fr/docs/Web/API/Event/preventDefault
+    https://developer.mozilla.org/fr/docs/Web/API/Event/preventDefault
 
-    - https://developer.mozilla.org/fr/docs/Web/API/Event/stopPropagation
+    https://developer.mozilla.org/fr/docs/Web/API/Event/stopPropagation
 
-    - https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer
+    https://developer.mozilla.org/en-US/docs/Web/API/DataTransfer
 
-    - https://stackoverflow.com/questions/51578629/how-can-i-put-an-input-in-the-alert-box
+    https://stackoverflow.com/questions/51578629/how-can-i-put-an-input-in-the-alert-box
 
-    - https://developer.mozilla.org/fr/docs/Web/API/Window/prompt
+    https://developer.mozilla.org/fr/docs/Web/API/Window/prompt
 
-    - https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea
+    https://developer.mozilla.org/fr/docs/Web/HTML/Element/textarea
 
-    - https://www.scaler.com/topics/css-disable-button/
+    https://www.scaler.com/topics/css-disable-button/
 
-    - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split
+    https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/split
 
-    - https://stackoverflow.com/questions/21143504/drag-and-drop-how-to-get-the-url-of-image-being-dropped-if-image-is-a-link-not
+    https://stackoverflow.com/questions/21143504/drag-and-drop-how-to-get-the-url-of-image-being-dropped-if-image-is-a-link-not
 
-    - https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
+    https://developer.mozilla.org/en-US/docs/Web/API/FormData/FormData
 
-    - https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/
+    https://www.smashingmagazine.com/2018/01/drag-drop-file-uploader-vanilla-js/
 
-    - https://developer.mozilla.org/fr/docs/Web/API/Blob/Blob
+    https://developer.mozilla.org/fr/docs/Web/API/Blob/Blob
 
 ## FAQ
 
-  - Pourquoi utilise t-on preventDefault ? Permet de ne pas afficher dans la barre de navigation le contenu
+  - Pourquoi utilise t-on preventDefault ? Permet de ne pas lancer l'action par défaut du navigateur. Ce qui permet d'empêcher certaine erreur de redirection.
 
-  - Quel est la différence entre typeof variable et variable.constructor pour un objet ? variable.constructor va donner la nature de l'objet, un objet file/blob/objet alors qu'un typeof retournera uniquement objet pour ces trois type d'objet différent.
+  - Quel est la différence entre typeof variable et variable.constructor pour un objet ? variable.constructor va donner la nature de l'objet, un objet file/blob/objet alors qu'un typeof retournera uniquement objet pour ces trois type d'objet différent (La différence est flagrante dans une condition).
 
 ## Droits d’auteurs et informations sur la licence.
 

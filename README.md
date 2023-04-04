@@ -13,7 +13,7 @@
     
 </div>
 
-## Projet : Réalissation de la partie dynamique du front d'un portfolio d'architecte en JavaScript
+## Projet : Réalisation de la partie dynamique du front d'un portfolio d'architecte en JavaScript
 ## Informations globales :
 
 - Status : 🟢 Terminé
@@ -48,7 +48,7 @@ Ayant terminé votre dernier projet avec un peu d'avance, vous êtes envoyé en 
 
 ## Problème et corrections éventuelles apportées :
 
-  - Erreur 405 "Method Not Allowed" à l'envoi du formulaire de connexion. Mauvaise écriture du code, ne pas utiliser les onClick et comprendre les requêtes POST avec https://fr.javascript.info/fetch#requetes-post
+  - Erreur 405 "Method Not Allowed" à l'envoi du formulaire de connexion. Mauvaise écriture du code, ne pas utiliser les onClick (obsolète) et comprendre les requêtes POST avec https://fr.javascript.info/fetch#requetes-post
   - Erreur de fetch post avec FormData. Rectification de l'erreur avec blob et fileReader pour crée des objets qui peuvent être append dans l'API
 
 # Site utiliser

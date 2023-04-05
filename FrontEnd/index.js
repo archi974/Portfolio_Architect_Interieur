@@ -84,7 +84,9 @@ document.addEventListener('DOMContentLoaded', function () {
                                         </div>
                                         <p>jpg, png : 4mo max</p>
                                     </div>
-                                    <div id="showPicture"></div>
+                                    <div id="showPicture">
+                                        <img src="#" class="dropImgModal" alt>
+                                    </div>
                                 </div>
                                 <label class="dataForm">Titre</label>
                                 <input class="dragImgInfo" type='text' name="titleImg">
@@ -167,14 +169,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     const dropAddImg = document.getElementById('dropAddImg');
                     const contentDropAddImg = document.getElementById('contentDropAddImg');
 
-                    // Prevent default browser behavior that creates an error
-                    dropAddImg.addEventListener('dragover', (e) => {
-                        e.preventDefault();
-                    })
-
                     // create a style border when we arrive in the drag area
                     dropAddImg.addEventListener('dragenter', (e) => {
                         e.preventDefault();
+
+                        dropAddImg.style.border = '5px dashed var(--green-color)';
+                        contentDropAddImg.style.display = 'none';
+                    })
+                    // Prevent default browser behavior that creates an error
+                    dropAddImg.addEventListener('dragover', (e) => {
+                        e.preventDefault();
+
                         dropAddImg.style.border = '5px dashed var(--green-color)';
                         contentDropAddImg.style.display = 'none';
                     })
@@ -182,51 +187,57 @@ document.addEventListener('DOMContentLoaded', function () {
                     // delete style border when we release picture in drag area
                     dropAddImg.addEventListener('dragleave', (e) => {
                         e.preventDefault();
+                        dropAddImg.style.border = 'none';
                         contentDropAddImg.style.display = 'flex';
                     })
 
+                    const newPicture = document.getElementById('showPicture').children[0];
                     let urlNewPicture = '';
                     let resultData = {};
+                    let imgExist = false;
                     // create an image with drop link
                     dropAddImg.addEventListener('drop', (e) => {
                         e.preventDefault();
 
                         let urlImg = e.dataTransfer.getData('URL');
-                        let fileImg = e.dataTransfer.files[0];
-                        let srcVerif = document.getElementById('showPicture');
-                        if (srcVerif.children[0] != undefined) {
-                            srcVerif.replaceChildren(srcVerif.children[1])
-                        }
+                        const fileImg = e.dataTransfer.files[0];
+                        const fileExt = fileImg?.name.split('.').pop();
+
                         // computer file
-                        if (fileImg) {
+                        if (fileImg && ['jpg', 'jpeg', 'png', 'gif', 'bmp'].indexOf(fileExt.toLowerCase()) !== -1) {
                             let reader = new FileReader()
                             reader.onload = function (e) {
                                 urlNewPicture = e.target.result;
                                 contentDropAddImg.style.display = 'none';
                                 dropAddImg.style.border = 'none';
-                                let newPicture = document.createElement('img');
                                 newPicture.src = urlNewPicture;
-                                newPicture.setAttribute('class', 'dropImgModal');
-                                document.getElementById('showPicture').appendChild(newPicture);
                             };
                             reader.readAsDataURL(fileImg);
                             resultData = fileImg;
+                            imgExist = true;
                             // navigateur url file
                         } else if (urlImg) {
                             urlNewPicture = urlImg;
                             contentDropAddImg.style.display = 'none';
                             dropAddImg.style.border = 'none';
-                            let newPicture = document.createElement('img');
                             newPicture.src = urlNewPicture;
-                            newPicture.setAttribute('class', 'dropImgModal');
-                            document.getElementById('showPicture').appendChild(newPicture);
                             fetch(urlNewPicture)
                                 .then(response => response.blob())
                                 .then(response => {
                                     resultData = response;
                                 })
+                            imgExist = true;
                         }
+                        if (imgExist) {
+                            dropAddImg.style.border = 'none';
+                            contentDropAddImg.style.display = 'none';
+                        } else {
+                            dropAddImg.style.border = 'none';
+                            contentDropAddImg.style.display = 'flex';
+                        }
+
                     })
+
 
                     // create an image with windows file
                     const dataFileElem = document.getElementById('dataFileElem');
@@ -239,10 +250,7 @@ document.addEventListener('DOMContentLoaded', function () {
                             urlNewPicture = e.target.result;
                             contentDropAddImg.style.display = 'none';
                             dropAddImg.style.border = 'none';
-                            let newPicture = document.createElement('img');
                             newPicture.src = urlNewPicture;
-                            newPicture.setAttribute('class', 'dropImgModal');
-                            document.getElementById('showPicture').appendChild(newPicture);
                         };
                         reader.readAsDataURL(fileImg);
                     })
@@ -321,7 +329,7 @@ document.addEventListener('DOMContentLoaded', function () {
             let newAlt = prompt("Définissez une description");
             let validImg = confirm('Voulez vous confirmer les changements');
             const imgProfile = document.getElementById('introduction').children[0].children[0];
-            if (validImg === true && newSrc) {
+            if (validImg && newSrc) {
                 imgProfile.src = newSrc;
                 imgProfile.alt = newAlt;
             }

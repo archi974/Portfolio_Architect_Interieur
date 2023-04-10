@@ -135,14 +135,22 @@ document.addEventListener('DOMContentLoaded', function () {
                         let pictureId = response[i].id;
                         deleteImgButton.addEventListener('click', async (e) => {
                             e.preventDefault();
-                            let responseDelete = await fetch(`http://localhost:5678/api/works/${pictureId}`, {
-                                method: 'DELETE',
-                                headers: {
-                                    'Authorization': `Bearer ${cookieToken[1]}`
-                                },
-                                body: pictureId
-                            });
-                            await responseDelete.json();
+                            try {
+                                const responseDelete = await fetch(`http://localhost:5678/api/works/${pictureId}`, {
+                                    method: 'DELETE',
+                                    headers: {
+                                        'Authorization': `Bearer ${cookieToken[1]}`,
+                                        'accept': 'application/json'
+                                    }
+                                });
+                                if (!responseDelete.ok) {
+                                    throw new Error('Network response was not ok');
+                                } else {
+                                    console.log('Image deleted successfully.');
+                                }
+                            } catch (error) {
+                                console.error(error);
+                            }
                         });
                     }
 
@@ -278,9 +286,12 @@ document.addEventListener('DOMContentLoaded', function () {
                                 method: 'POST',
                                 headers: {
                                     'Authorization': `Bearer ${cookieToken[1]}`,
+                                    'accept': 'application/json'
                                 },
                                 body: formData
                             })
+                                .then(response => response.json())
+                                .catch(error => console.error(error))
                         } else {
                             document.getElementById('errorMessageModal').innerHTML = 'Veuillez ajouter une image et remplir les champs Titre et Catégorie.';
                         }

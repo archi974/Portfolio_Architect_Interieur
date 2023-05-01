@@ -17,7 +17,7 @@ document.getElementById('buttonSubmit').addEventListener('click', async function
             switch (response.status) {
                 case 200:
                     document.cookie = `loginToken=${result.token}`;
-                    location.replace("http://127.0.0.1:5500/FrontEnd/");
+                    location.replace("http://127.0.0.1:5500/index.html");
                 break;
                 default:
                     document.getElementById("errorMessageLogin").innerHTML = "Votre E-mail ou votre mot de passe ne correspond pas.";

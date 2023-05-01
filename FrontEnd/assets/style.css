@@ -277,6 +277,14 @@ article .edit {
 	width: 100%;
 }
 
+.project_item img {
+	height: 100%;
+}
+
+.loadingImg {
+	opacity: 50%;
+}
+
 /* Contact */
 
 #contact {
@@ -357,7 +365,7 @@ footer nav ul {
 
 /* MODAL */
 
-.modal {
+#modal {
 	position: fixed;
     z-index: 1;
     padding-top: 2%;
@@ -422,6 +430,7 @@ footer nav ul {
 .editImgModal {
 	padding-left: 9px;
 	padding-bottom: 12px;
+	height: 100%;
 }
 
 .editImgModal:first-child, .editImgModal:nth-child(5n+1) {

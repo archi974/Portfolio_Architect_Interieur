@@ -89,7 +89,7 @@ document.addEventListener('DOMContentLoaded', function () {
                                     </div>
                                 </div>
                                 <label class="dataForm">Titre</label>
-                                <input class="dragImgInfo" type='text' name="titleImg">
+                                <input class="dragImgInfo" type='text' maxlength="50" name="titleImg">
                                 <label class="dataForm">Catégorie</label>
                                 <select class="dragImgInfo" name="categoryOption">
                                     <option></option>
@@ -320,7 +320,6 @@ document.addEventListener('DOMContentLoaded', function () {
                             const newDiv = document.createElement('div')
                             newDiv.setAttribute('class', 'editImgModal loadingImg')
                             contentImgModal.appendChild(newDiv);
-                            console.log(contentImgModal);
                             newDiv.innerHTML = `<div class="imgModal">
                             <img src="${urlNewPicture}" alt="${addTitlePicture}">
                             <div class="logoModal">
@@ -385,6 +384,6 @@ document.addEventListener('DOMContentLoaded', function () {
         })
 
         // hide filter bar
-        containerFilter.style.visibility = 'hidden';
+        // containerFilter.style.visibility = 'hidden';
     }
 });

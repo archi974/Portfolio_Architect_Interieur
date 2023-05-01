@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 const modal = editBalise.appendChild(document.createElement("div"));
                 document.getElementById('projectEdit').addEventListener('click', (e) => {
                     e.preventDefault();
-                    modal.setAttribute('class', 'modal');
+                    modal.setAttribute('id', 'modal');
                     modal.appendChild(document.createElement('div')).setAttribute('id', 'modalContent')
                     const modalContent = document.getElementById('modalContent');
                     modalContent.innerHTML =
@@ -103,12 +103,14 @@ document.addEventListener('DOMContentLoaded', function () {
                             </form>
                         </div>`
 
+                    const contentImgModal = document.getElementById('contentImgModal');
                     // image modal loop with logo
                     response.forEach(modalImageInfo => {
                         let imageUrl = modalImageInfo.imageUrl;
                         let title = modalImageInfo.title;
-                        document.getElementById('contentImgModal').innerHTML +=
-                            `<div class="editImgModal">
+                        let idImg = modalImageInfo.id;
+                        contentImgModal.innerHTML +=
+                            `<div class="editImgModal" data-id = ${idImg}>
                                 <div class="imgModal">
                                     <img src=${imageUrl} alt="${title}">
                                     <div class="logoModal">
@@ -124,8 +126,17 @@ document.addEventListener('DOMContentLoaded', function () {
                     document.getElementById('closeModal').addEventListener('click', (e) => {
                         e.preventDefault();
                         editBalise.lastChild.replaceChildren();
-                        editBalise.lastChild.classList.remove('modal');
+                        editBalise.lastChild.removeAttribute('id');
                     });
+
+                    // Close modal with click outside modal
+                    document.getElementById('modal').addEventListener('click', (e) => {
+                        if(e.target === modal) {
+                            editBalise.lastChild.replaceChildren();
+                            editBalise.lastChild.removeAttribute('id');
+                        }
+                        e.stopPropagation();
+                    })
 
                     // button delete gallery
                     const arrayDeleteImgButton = document.querySelectorAll('.deleteLogoModal'); // querySelectorAll
@@ -147,6 +158,8 @@ document.addEventListener('DOMContentLoaded', function () {
                                     throw new Error('Network response was not ok');
                                 } else {
                                     console.log('Image deleted successfully.');
+                                    document.querySelector(`div[data-id="${pictureId}"]`).remove();
+                                    
                                 }
                             } catch (error) {
                                 console.error(error);
@@ -211,7 +224,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         const fileImg = e.dataTransfer.files[0];
                         const fileExt = fileImg?.name.split('.').pop();
 
-                        // computer file
+                        // computer filef
                         if (fileImg && ['jpg', 'jpeg', 'png', 'gif', 'bmp'].indexOf(fileExt.toLowerCase()) !== -1) {
                             let reader = new FileReader()
                             reader.onload = function (e) {
@@ -229,7 +242,8 @@ document.addEventListener('DOMContentLoaded', function () {
                             contentDropAddImg.style.display = 'none';
                             dropAddImg.style.border = 'none';
                             newPicture.src = urlNewPicture;
-                            fetch(urlNewPicture)
+                            console.log(urlImg);
+                            fetch(urlImg)
                                 .then(response => response.blob())
                                 .then(response => {
                                     resultData = response;
@@ -292,6 +306,30 @@ document.addEventListener('DOMContentLoaded', function () {
                             })
                                 .then(response => response.json())
                                 .catch(error => console.error(error))
+                            // add img gallery
+                            const newFigure = document.createElement('figure');
+                            newFigure.setAttribute('class', 'project_item loadingImg');
+                            newFigure.setAttribute('data-item-figure', addCategoryPicture)
+                            gallery.appendChild(newFigure);
+                            newFigure.innerHTML =
+                                `<img src="${urlNewPicture}" alt="${addTitlePicture}">
+                                <figcaption>${addTitlePicture}</figcation>`;
+                            editBalise.lastChild.replaceChildren();
+                            editBalise.lastChild.removeAttribute('id');
+                            // add img modal
+                            const newDiv = document.createElement('div')
+                            newDiv.setAttribute('class', 'editImgModal loadingImg')
+                            contentImgModal.appendChild(newDiv);
+                            console.log(contentImgModal);
+                            newDiv.innerHTML = `<div class="imgModal">
+                            <img src="${urlNewPicture}" alt="${addTitlePicture}">
+                            <div class="logoModal">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="mooveLogoModal"><path d="M278.6 9.4c-12.5-12.5-32.8-12.5-45.3 0l-64 64c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l9.4-9.4V224H109.3l9.4-9.4c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-64 64c-12.5 12.5-12.5 32.8 0 45.3l64 64c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-9.4-9.4H224V402.7l-9.4-9.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l64 64c12.5 12.5 32.8 12.5 45.3 0l64-64c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-9.4 9.4V288H402.7l-9.4 9.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l64-64c12.5-12.5 12.5-32.8 0-45.3l-64-64c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l9.4 9.4H288V109.3l9.4 9.4c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-64-64z"/></svg>
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" class="deleteLogoModal"><path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z"/></svg>
+                            </div>
+                            </div>
+                            <p>éditer</p>`
+
                         } else {
                             document.getElementById('errorMessageModal').innerHTML = 'Veuillez ajouter une image et remplir les champs Titre et Catégorie.';
                         }
@@ -313,7 +351,7 @@ document.addEventListener('DOMContentLoaded', function () {
         document.querySelector('nav li:nth-child(3)').innerHTML = `<a href="./" id="disconnect">Logout</a>`;
         document.getElementById('disconnect').addEventListener('click', function (event) {
             event.preventDefault();
-            document.cookie = `${cookieToken[0]}=;path=/FrontEnd;domain=127.0.0.1;Max-age=0;`;
+            document.cookie = `${cookieToken[0]}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
             location.reload();
         });
 
